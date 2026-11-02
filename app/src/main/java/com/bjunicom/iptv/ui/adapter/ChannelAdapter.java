@@ -137,6 +137,7 @@ public class ChannelAdapter extends RecyclerView.Adapter<ChannelAdapter.ViewHold
 
         // 组播地址与探测到的视频轨道摘要
         String subText = ch.getRawUrl();
+        if (ch.supportsTimeshift()) subText += "  •  ↺时移";
         if (!TextUtils.isEmpty(ch.getVideoTrackInfo())) {
             subText = subText + "  •  " + ch.getVideoTrackInfo().replace("#1 ", "");
         }

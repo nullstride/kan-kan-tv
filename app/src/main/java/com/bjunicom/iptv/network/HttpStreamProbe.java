@@ -37,8 +37,13 @@ public final class HttpStreamProbe {
     }
 
     public Result check(String address, int timeoutMs) {
+        return check(address, timeoutMs, (int) Math.min(15000L, Math.max(300L, timeoutMs) * 5L));
+    }
+
+    /** A diagnostics route gets its own total budget, including redirects and HLS requests. */
+    public Result check(String address, int timeoutMs, int budgetMs) {
         timeout = Math.max(300, Math.min(5000, timeoutMs));
-        deadline = System.nanoTime() + Math.min(15000L, timeout * 5L) * 1_000_000L;
+        deadline = System.nanoTime() + Math.max(300L, Math.min(15000L, budgetMs)) * 1_000_000L;
         try {
             checkMedia(new URL(address), null, 0, new HashSet<>());
             return new Result(true, "已读取媒体数据；能否解码请以实际播放为准");

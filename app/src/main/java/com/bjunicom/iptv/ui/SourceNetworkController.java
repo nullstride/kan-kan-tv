@@ -34,6 +34,9 @@ import java.util.concurrent.TimeUnit;
 
 /** First-use guidance and explicit, cancellable source checks. Never switches an ISP automatically. */
 final class SourceNetworkController {
+    private static final int SAMPLE_LIMIT = 4;
+    private static final int CHANNEL_TIMEOUT_MS = 4000;
+    private static final int CHECK_TIMEOUT_SECONDS = 40;
     private final MainActivity activity;
     private final IptvSettings settings;
     private final ChannelRepository repository;
@@ -172,7 +175,7 @@ final class SourceNetworkController {
         addText(progressContent, config.description(), 14, false);
         android.widget.ProgressBar spinner = new android.widget.ProgressBar(activity);
         progressContent.addView(spinner, new LinearLayout.LayoutParams(AdaptiveViews.dp(activity, 32), AdaptiveViews.dp(activity, 32)));
-        addText(progressContent, "正在抽查频道，请稍候…\n最长约 25 秒。", 14, false);
+        addText(progressContent, "正在抽查频道，连接失败时会补测其他方式。\n最长约 40 秒，可随时取消。", 14, false);
         dialog = new MaterialAlertDialogBuilder(activity).setTitle("检测节目源")
                 .setView(scroll(progressContent)).setNegativeButton("取消检测", (d, w) -> cancelCheck()).create();
         AlertDialog progress = dialog;
@@ -181,7 +184,7 @@ final class SourceNetworkController {
             if (dialog == d) { dialog = null; cancelCheck(); }
         });
         NetworkDialogUi.show(activity, progress);
-        workers = Executors.newFixedThreadPool(3);
+        workers = Executors.newFixedThreadPool(samples.size());
         coordinator = Executors.newSingleThreadExecutor();
         Map<Integer, Future<SampleResult>> pending = new LinkedHashMap<>();
         for (Map.Entry<Integer, List<IptvChannel>> source : samples.entrySet()) {
@@ -191,10 +194,11 @@ final class SourceNetworkController {
             StringBuilder report = new StringBuilder(network.description + "\n"
                     + (config.changed ? "按当前修改临时检测，不会保存。" : sourceChosen
                     ? "当前节目源：" + IptvSettings.getIspDisplayName(activeProvider) : "尚未选择节目源")
-                    + "\n检测方式：" + modeName(config.mode) + "\n\n");
-            long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(25);
+                    + "\n优先检测：" + modeName(config.mode) + "；失败后补测其他连接方式，不改变设置。\n\n");
+            long deadline = System.nanoTime() + TimeUnit.SECONDS.toNanos(CHECK_TIMEOUT_SECONDS);
             int suggested = -1;
             boolean currentReceived = false;
+            boolean currentNeedsFallback = false;
             Map<Integer, SampleResult> checkedSources = new LinkedHashMap<>();
             for (Map.Entry<Integer, Future<SampleResult>> source : pending.entrySet()) {
                 SampleResult checked;
@@ -202,14 +206,19 @@ final class SourceNetworkController {
                 catch (Exception error) { checked = new SampleResult(0, 0, "检查未完成，请重试", "检查超时或已中断"); }
                 checkedSources.put(source.getKey(), checked);
                 if (checked.received > 0) {
-                    if (source.getKey() == activeProvider) currentReceived = true;
+                    if (source.getKey() == activeProvider) {
+                        currentReceived = true;
+                        currentNeedsFallback = checked.usedFallback;
+                    }
                     if (suggested < 0) suggested = source.getKey();
                 }
                 report.append(IptvSettings.getIspDisplayName(source.getKey())).append("\n").append(checked.detail).append("\n\n");
             }
-            String recommendation = currentReceived ? "当前节目源已收到媒体数据，可继续尝试播放。"
+            String recommendation = currentReceived ? (currentNeedsFallback
+                    ? "当前连接方式未成功，补测方式收到媒体数据。请按详情确认连接设置后尝试播放。"
+                    : "当前节目源已收到媒体数据，可继续尝试播放。")
                     : suggested >= 0 ? "可尝试：" + IptvSettings.getIspDisplayName(suggested) + "（抽查收到数据）"
-                    : "本次抽查未收到视频数据。请检查网络或更换节目源。";
+                    : "本次抽查未确认可用节目源，不能据此判定全部频道失效。请查看连接详情。";
             final int recommended = suggested;
             main.post(() -> {
                 if (closed || run != generation || activity.isFinishing()) return;
@@ -228,9 +237,10 @@ final class SourceNetworkController {
                             + (source.getKey() == activeProvider ? " · 本次选择" : ""), 16, true);
                     addText(resultContent, checked.total == 0 ? checked.reason
                             : "抽查 " + checked.total + " 个频道，" + checked.received + " 个收到数据"
-                            + (checked.received == 0 ? "\n" + checked.reason : ""), 14, false);
+                             + (checked.received == 0 ? "\n" + checked.reason : checked.usedFallback
+                             ? "\n当前方式未成功，补测方式可用。请查看详情确认连接设置。" : ""), 14, false);
                 }
-                addText(resultContent, "本次只抽查了少量频道，不能代表全部频道都能播放。", 12, false);
+                addText(resultContent, "每个节目源最多抽查 4 个不同频道，收到数据后结束该源抽查。结果不代表全部频道或实际解码效果。", 12, false);
                 TextView details = addText(resultContent, report.toString(), 13, false);
                 details.setVisibility(View.GONE);
                 android.widget.Button expand = AdaptiveViews.action(resultContent, View.generateViewId(), "查看详情");
@@ -256,40 +266,54 @@ final class SourceNetworkController {
         });
     }
 
-    private SampleResult checkSample(List<IptvChannel> channels, CheckConfig config) {
+    SampleResult checkSample(List<IptvChannel> channels, CheckConfig config) {
         if (channels.isEmpty()) return new SampleResult(0, 0, "没有频道，请导入频道列表", "未加载到频道");
         MulticastScannerEngine engine = new MulticastScannerEngine(activity.getApplicationContext(), config.mode, config.proxy);
         engines.add(engine);
         try {
             int received = 0;
+            int attempted = 0;
+            boolean usedFallback = false;
             StringBuilder details = new StringBuilder();
             String reason = "未收到视频数据，请检查网络或 IPTV 接入。";
             for (IptvChannel channel : channels) {
                 if (Thread.currentThread().isInterrupted()) break;
-                MulticastScannerEngine.ChannelCheck checked = engine.checkChannel(channel, 1500);
-                if (checked.connected) received++;
+                MulticastScannerEngine.ChannelCheck checked = engine.checkChannel(channel, CHANNEL_TIMEOUT_MS);
+                attempted++;
+                if (checked.connected) { received++; usedFallback = checked.usedFallback; }
                 else reason = friendlyReason(checked.detail);
                 details.append(channel.getDisplayName()).append("：").append(checked.detail).append("\n");
+                if (checked.connected) break;
             }
-            return new SampleResult(channels.size(), received, reason, details.toString().trim());
+            return new SampleResult(attempted, received, reason, details.toString().trim(), usedFallback);
         } finally { engine.cancel(); engines.remove(engine); }
     }
 
-    private static final class SampleResult {
+    static final class SampleResult {
         final int total, received;
         final String reason, detail;
+        final boolean usedFallback;
         SampleResult(int total, int received, String reason, String detail) {
+            this(total, received, reason, detail, false);
+        }
+        SampleResult(int total, int received, String reason, String detail, boolean usedFallback) {
             this.total = total; this.received = received; this.reason = reason; this.detail = detail;
+            this.usedFallback = usedFallback;
         }
     }
 
     static List<IptvChannel> sample(List<IptvChannel> channels) {
         List<IptvChannel> result = new ArrayList<>();
-        if (!channels.isEmpty()) result.add(channels.get(0).copy());
-        for (int i = channels.size() - 1; i > 0; i--) {
-            if (!channels.get(i).getRawUrl().equals(result.get(0).getRawUrl())) {
-                result.add(channels.get(i).copy()); break;
-            }
+        Map<String, IptvChannel> unique = new LinkedHashMap<>();
+        for (IptvChannel channel : channels) {
+            if (channel != null && channel.getRawUrl() != null && !channel.getRawUrl().trim().isEmpty())
+                unique.putIfAbsent(channel.getRawUrl().trim(), channel);
+        }
+        List<IptvChannel> candidates = new ArrayList<>(unique.values());
+        int count = Math.min(SAMPLE_LIMIT, candidates.size());
+        for (int i = 0; i < count; i++) {
+            int index = count == 1 ? 0 : i * (candidates.size() - 1) / (count - 1);
+            result.add(candidates.get(index).copy());
         }
         return result;
     }
@@ -323,6 +347,7 @@ final class SourceNetworkController {
 
     static String friendlyReason(String detail) {
         String lower = detail.toLowerCase(java.util.Locale.ROOT);
+        if (detail.contains("补测")) return "所选连接方式和补测方式均未收到数据，请查看详情检查 IPTV 接入和连接设置。";
         if (lower.contains("403") || lower.contains("401") || detail.contains("授权")) return "频道访问受限，可能需要授权或当地网络。";
         if (lower.contains("resolve") || lower.contains("dns") || detail.contains("域名")) return "无法解析频道地址，请检查网络。";
         if (lower.contains("timed out") || detail.contains("超时")) return "频道连接超时，请稍后重试。";

@@ -9,6 +9,14 @@
 - 自定义 M3U 只在本地导入；本项目不提供订阅账号或电视节目内容授权。
 - 首次打开选择节目源；播放器菜单中的“网络检测”用于确认当前网络是否可用。
 
+## 1.3.4 更新
+
+- 整合上游 1.3.1（89640d0）的联通时移、电信频道表与扫描端口更新。
+- 节目源检测最多抽查 4 个不同频道，代理或组播失败后补测另一种连接方式，减少漏判。
+- 首次使用默认 UTV（ExoPlayer）内核，已保存的内核选择保持有效。
+- 时移需要频道和 IPTV 网络支持：电视全屏长按 OK 2 秒，手机从“更多 → 时移回看”进入；点击直播时间返回直播。
+- 设备与频道观看上报继续关闭。
+
 ## 功能
 
 - UTV/ExoPlayer、Ijk 与系统播放器；硬件解码、MP2 软件伴音和错误回退。
@@ -47,6 +55,6 @@ node tools/native-libraries.js verify
 
 本仓库同时提供原生库对应的完整源码归档、源码补丁、精确二进制校验与构建入口，见 [原生库说明](native/README.md)。发布 APK 时请同时提供这些源码和许可材料。
 
-感谢 bilibili/ijkplayer、FFmpeg、ExoPlayer、anITer/utv、AndroidLiquidGlassView，以及 wuwentao/bj-unicom-iptv 对 IPTV 频道事实与网络知识的整理。频道事实参考不构成对节目内容的授权；巡检脚本采用本项目独立实现。
+感谢 bilibili/ijkplayer、FFmpeg、ExoPlayer、anITer/utv、zzzz0317/beijing-unicom-iptv-playlist、AndroidLiquidGlassView，以及 wuwentao/bj-unicom-iptv 对 IPTV 频道事实与网络知识的整理。频道事实参考不构成对节目内容的授权；巡检脚本采用本项目独立实现。
 
 [贡献说明](CONTRIBUTING.md) · [使用隐私](PRIVACY.md) · [安全反馈](SECURITY.md) · [播放器架构](docs/player-architecture.md)

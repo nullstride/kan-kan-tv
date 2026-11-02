@@ -50,4 +50,5 @@
 <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_channels" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:padding="6dp" android:clipToPadding="false" android:focusable="true" android:scrollbars="vertical"/>
 <TextView android:id="@+id/tv_drawer_help" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="点击播放 · 长按收藏" android:textSize="12sp" android:textColor="@color/text_primary" android:layout_marginTop="8dp" android:gravity="center"/>
 </LinearLayout>
+    <include layout="@layout/view_timeshift_overlay" />
 </FrameLayout>

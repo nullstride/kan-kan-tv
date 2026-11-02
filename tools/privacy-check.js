@@ -74,8 +74,9 @@ function detect(text, file, options = {}) {
 }
 
 function identityIssues(name, email, file = '(commit identity)') {
+  const alias = /^(?:[0-9]+\+)?([A-Z0-9-]+(?:\[bot\])?)@users\.noreply\.github\.com$/i.exec(email)?.[1];
   return (name === 'GitHub' && email === 'noreply@github.com')
-    || (name.trim() && /^(?:[0-9]+\+)?[A-Z0-9-]+(?:\[bot\])?@users\.noreply\.github\.com$/i.test(email))
+    || (alias && name.toLowerCase() === alias.toLowerCase())
     ? [] : [{file, line: 1, rule: 'personal-github-identity-required'}];
 }
 

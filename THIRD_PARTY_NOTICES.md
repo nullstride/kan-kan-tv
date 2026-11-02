@@ -4,7 +4,7 @@
 
 | 组件 | 版本 / 范围 | 许可与来源 |
 | --- | --- | --- |
-| anITer/utv | 整合基线 8fcc355，应用与三网选择逻辑 | MIT；https://github.com/anITer/utv |
+| anITer/utv | 整合基线 89640d0（1.3.1），应用、三网选择和时移逻辑 | MIT；https://github.com/anITer/utv |
 | bilibili/ijkplayer | k0.8.8，Java 播放接口与原生库 | LGPL-2.1-or-later；完整源码见 third_party/sources/ijkplayer-k0.8.8.tar.gz |
 | Bilibili/FFmpeg | ff3.4--ijk0.8.7--20180103--001，含 MP2 注册补丁 | LGPL-2.1-or-later；源码、补丁与构建信息见 native/README.md |
 | IRenderView、MeasureHelper、SurfaceRenderView、TextureRenderView、IjkVideoView | ijkplayer Android 示例的衍生实现 | Apache-2.0；Copyright 2015 Bilibili、Zhang Rui；文件头保留原始声明 |

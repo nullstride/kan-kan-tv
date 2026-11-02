@@ -61,7 +61,7 @@ public class UpstreamFeatureIntegrationTest {
             // 3. Switch to Beijing Telecom IPTV
             activity.switchIspProvider(com.bjunicom.iptv.config.IptvSettings.ISP_BEIJING_TELECOM);
             assertEquals(com.bjunicom.iptv.config.IptvSettings.ISP_BEIJING_TELECOM, settings.getIspProvider());
-            assertEquals(149, repo.getAllChannels().size());
+            assertEquals(176, repo.getAllChannels().size());
             assertTrue(repo.getAllChannels().get(0).getRawUrl().startsWith("rtp://225.1.8."));
             assertEquals("225.1.8", settings.getScanSubnet());
 

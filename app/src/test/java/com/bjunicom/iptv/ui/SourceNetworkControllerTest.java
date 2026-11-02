@@ -224,11 +224,28 @@ public class SourceNetworkControllerTest {
         ChannelRepository repo = ChannelRepository.getInstance(ApplicationProvider.getApplicationContext());
         List<com.bjunicom.iptv.model.IptvChannel> original = repo.getAllChannels();
         List<com.bjunicom.iptv.model.IptvChannel> sampled = SourceNetworkController.sample(original);
-        assertEquals(2, sampled.size());
+        assertEquals(4, sampled.size());
         assertNotSame(original.get(0), sampled.get(0));
         Boolean before = original.get(0).getConnected();
         sampled.get(0).setConnected(true);
         assertEquals(before, original.get(0).getConnected());
+    }
+
+    @Test public void samplingIncludesMiddleChannelsAndIgnoresDuplicateUrls() {
+        java.util.ArrayList<com.bjunicom.iptv.model.IptvChannel> channels = new java.util.ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            com.bjunicom.iptv.model.IptvChannel channel = new com.bjunicom.iptv.model.IptvChannel();
+            channel.setRawUrl("http://127.0.0.1/channel-" + i);
+            channels.add(channel); channels.add(channel.copy());
+        }
+        List<com.bjunicom.iptv.model.IptvChannel> sampled = SourceNetworkController.sample(channels);
+        assertEquals(4, sampled.size());
+        assertEquals(channels.get(0).getRawUrl(), sampled.get(0).getRawUrl());
+        assertEquals(channels.get(6).getRawUrl(), sampled.get(1).getRawUrl());
+        assertEquals(channels.get(12).getRawUrl(), sampled.get(2).getRawUrl());
+        assertEquals(channels.get(18).getRawUrl(), sampled.get(3).getRawUrl());
+        assertTrue(SourceNetworkController.sample(java.util.Collections.emptyList()).isEmpty());
+        assertEquals(1, SourceNetworkController.sample(java.util.Arrays.asList(channels.get(0), channels.get(0))).size());
     }
 
     @Test public void mobileHttpFailureDoesNotTellUsersToConfigureAMulticastProxy() {

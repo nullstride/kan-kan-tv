@@ -36,6 +36,8 @@ test('allows portable examples and public identity', () => {
   assert.deepEqual(detect(text, 'docs/example.md'), []);
   assert.deepEqual(identityIssues(policy.identity.name, policy.identity.email), []);
   assert.deepEqual(identityIssues('contributor', '12345+contributor@users.noreply.github.com'), []);
+  assert.deepEqual(identityIssues('dependabot[bot]', '49699333+dependabot[bot]@users.noreply.github.com'), []);
+  assert.equal(identityIssues('Fixture Real Name', '12345+contributor@users.noreply.github.com').length, 1);
   assert.equal(identityIssues(policy.identity.name, secretEmail).length, 1);
 });
 

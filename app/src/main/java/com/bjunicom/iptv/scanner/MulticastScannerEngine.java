@@ -74,12 +74,13 @@ public class MulticastScannerEngine {
     private ExecutorService workerPool;
     private Process activeShellProcess;
     private final java.util.concurrent.CopyOnWriteArrayList<HttpStreamProbe> activeHttpProbes = new java.util.concurrent.CopyOnWriteArrayList<>();
+    private final java.util.concurrent.CopyOnWriteArrayList<MulticastSocket> activeMulticastSockets = new java.util.concurrent.CopyOnWriteArrayList<>();
 
     // 北京联通与北京电信高频组播端口列表 (按出现频次降序排列，加速动态扫描)
     private static final int[] FAST_UNICOM_PORTS = {
-            8002, 8001, 4120, 8000, 4220, 2000, 1234, 5008,
+            8002, 8001, 4120, 8000, 4220, 4222, 2000, 1234, 5008,
             3001, 3002, 3003, 3004, 3005, 3006,
-            8004, 8008, 8012, 8016, 8020, 8028, 8032, 8036, 8068, 8080, 8128, 8264,
+            8004, 8008, 8012, 8016, 8020, 8028, 8032, 8036, 8068, 8080, 8128, 8130, 8264,
             9000, 9004, 9008, 9012, 9016, 9020, 9024
     };
 
@@ -103,6 +104,7 @@ public class MulticastScannerEngine {
     public void cancel() {
         cancelled.set(true);
         for (HttpStreamProbe probe : activeHttpProbes) probe.cancel();
+        for (MulticastSocket socket : activeMulticastSockets) socket.close();
         if (activeShellProcess != null) {
             activeShellProcess.destroy();
             activeShellProcess = null;
@@ -641,16 +643,24 @@ public class MulticastScannerEngine {
         if (mode == IptvSettings.STREAM_MODE_UDPXY) {
             String httpUrl = StreamUrlResolver.toUdpxyUrl(rawRtpUrl, proxy);
             res = probeHttpTsStream(httpUrl, knownChannel, timeoutMs);
-            // 若 udpxy 无法访问（例如采用有线网卡 eth0 10.10.10.2 直连光猫组播），自动回退探测原生 IGMP 组播流
-            if (!res.connected && checkMode == null) {
+            String primaryDetail = "路由器代理：" + probeDetail(res);
+            res.detail = primaryDetail;
+            // Draft diagnostics also test the fallback, without saving or changing the draft.
+            if (!res.connected && !isCheckCancelled()) {
                 res = probeMulticastUdpStream(ip, port, knownChannel, timeoutMs);
+                res.usedFallback = res.connected;
+                res.detail = primaryDetail + "\n补测组播接收：" + probeDetail(res);
             }
         } else {
             res = probeMulticastUdpStream(ip, port, knownChannel, timeoutMs);
+            String primaryDetail = "组播接收：" + probeDetail(res);
+            res.detail = primaryDetail;
             // 若直连组播超时且配置了 udpxy，尝试 udpxy 探测
-            if (!res.connected && checkMode == null && !TextUtils.isEmpty(proxy)) {
+            if (!res.connected && !isCheckCancelled() && !TextUtils.isEmpty(proxy)) {
                 String httpUrl = StreamUrlResolver.toUdpxyUrl(rawRtpUrl, proxy);
-                res = probeHttpTsStream(httpUrl, knownChannel, Math.min(timeoutMs, 1000));
+                res = probeHttpTsStream(httpUrl, knownChannel, timeoutMs);
+                res.usedFallback = res.connected;
+                res.detail = primaryDetail + "\n补测路由器代理：" + probeDetail(res);
             }
         }
 
@@ -658,13 +668,22 @@ public class MulticastScannerEngine {
         return res;
     }
 
+    private boolean isCheckCancelled() {
+        return cancelled.get() || Thread.currentThread().isInterrupted();
+    }
+
+    private static String probeDetail(StreamProbeResult result) {
+        return result.detail.isEmpty() ? (result.connected ? "已收到媒体数据" : "未收到媒体数据") : result.detail;
+    }
+
     private StreamProbeResult probeHttpTsStream(String urlStr, IptvChannel knownChannel, int timeoutMs) {
         StreamProbeResult result = new StreamProbeResult();
         HttpStreamProbe probe = new HttpStreamProbe();
         activeHttpProbes.add(probe);
         try {
-            if (cancelled.get()) return result;
-            HttpStreamProbe.Result checked = probe.check(urlStr, timeoutMs);
+            if (isCheckCancelled()) return result;
+            HttpStreamProbe.Result checked = checkMode == null ? probe.check(urlStr, timeoutMs)
+                    : probe.check(urlStr, timeoutMs, timeoutMs);
             result.connected = checked.connected;
             result.detail = checked.detail;
             if (checked.connected) {
@@ -682,14 +701,19 @@ public class MulticastScannerEngine {
     public ChannelCheck checkChannel(IptvChannel channel, int timeoutMs) {
         if (channel == null || cancelled.get()) return new ChannelCheck(false, "检测已取消");
         StreamProbeResult result = probeChannelStream(channel.getMulticastIp(), channel.getMulticastPort(), channel, timeoutMs);
+        if (isCheckCancelled()) return new ChannelCheck(false, "检测已取消");
         return new ChannelCheck(result.connected, result.detail.isEmpty()
-                ? (result.connected ? "已收到组播媒体数据" : "未收到组播数据，请检查 IPTV 接入与代理配置") : result.detail);
+                ? (result.connected ? "已收到媒体数据" : "未收到媒体数据，请检查连接设置") : result.detail, result.usedFallback);
     }
 
     public static final class ChannelCheck {
         public final boolean connected;
         public final String detail;
-        ChannelCheck(boolean connected, String detail) { this.connected = connected; this.detail = detail; }
+        public final boolean usedFallback;
+        ChannelCheck(boolean connected, String detail) { this(connected, detail, false); }
+        ChannelCheck(boolean connected, String detail, boolean usedFallback) {
+            this.connected = connected; this.detail = detail; this.usedFallback = usedFallback;
+        }
     }
 
     private StreamProbeResult probeMulticastUdpStream(String ip, int port, IptvChannel knownChannel, int timeoutMs) {
@@ -700,6 +724,8 @@ public class MulticastScannerEngine {
         try {
             group = InetAddress.getByName(ip);
             socket = new MulticastSocket(null);
+            activeMulticastSockets.add(socket);
+            if (isCheckCancelled()) return result;
             socket.setReuseAddress(true);
             socket.bind(new java.net.InetSocketAddress(port));
             socket.setReceiveBufferSize(512 * 1024);
@@ -709,8 +735,10 @@ public class MulticastScannerEngine {
             byte[] buf = new byte[2048];
             DatagramPacket packet = new DatagramPacket(buf, buf.length);
             int validTsPackets = 0;
-            long deadline = System.currentTimeMillis() + Math.max(300, timeoutMs);
-            while (System.currentTimeMillis() < deadline && validTsPackets < 2) {
+            long deadline = System.nanoTime() + Math.max(300L, timeoutMs) * 1_000_000L;
+            while (!isCheckCancelled() && System.nanoTime() < deadline && validTsPackets < 2) {
+                socket.setSoTimeout((int) Math.max(1, (deadline - System.nanoTime()) / 1_000_000L));
+                packet.setLength(buf.length);
                 socket.receive(packet);
                 int len = packet.getLength();
                 if (len >= 188 && containsTsSyncByte(buf, len)) {
@@ -722,11 +750,15 @@ public class MulticastScannerEngine {
                     }
                 }
             }
-        } catch (Exception ignored) {
+        } catch (java.net.SocketTimeoutException timeout) {
+            result.detail = "等待组播媒体数据超时";
+        } catch (Exception error) {
+            result.detail = isCheckCancelled() ? "检测已取消" : "无法接收组播数据，请检查 IPTV 接入或连接设置";
         } finally {
             if (socket != null) {
                 LocalMulticastProxyServer.leaveMulticastOnAllInterfaces(socket, group, port, joinedInterfaces);
                 socket.close();
+                activeMulticastSockets.remove(socket);
             }
         }
         return result;
@@ -949,6 +981,7 @@ public class MulticastScannerEngine {
 
     private static class StreamProbeResult {
         boolean connected = false;
+        boolean usedFallback = false;
         String resolutionFlag = "错误";
         String videoTrack = "";
         String audioTrack = "";

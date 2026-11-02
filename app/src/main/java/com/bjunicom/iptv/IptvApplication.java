@@ -34,7 +34,10 @@ public class IptvApplication extends Application {
     private LocalMulticastProxyServer localProxyServer;
     private ConnectivityManager connectivityManager;
     private final ConnectivityManager.NetworkCallback networkCallback = new ConnectivityManager.NetworkCallback() {
-        @Override public void onAvailable(Network network) { TransportRouteCache.clear(); }
+        @Override public void onAvailable(Network network) {
+            TransportRouteCache.clear();
+            DataReportManager.getInstance(IptvApplication.this).reportDeviceProfileInitOnStartup();
+        }
         @Override public void onLost(Network network) { TransportRouteCache.clear(); }
         @Override public void onLinkPropertiesChanged(Network network, LinkProperties properties) {
             TransportRouteCache.clear();
@@ -117,6 +120,7 @@ public class IptvApplication extends Application {
 
     @Override
     public void onTerminate() {
+        DataReportManager.getInstance(this).onAppExit();
         if (connectivityManager != null) {
             try { connectivityManager.unregisterNetworkCallback(networkCallback); }
             catch (RuntimeException ignored) {}

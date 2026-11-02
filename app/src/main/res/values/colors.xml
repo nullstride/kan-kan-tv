@@ -55,4 +55,7 @@
     <color name="badge_sd">#334155</color>
     <color name="badge_online">#059669</color>
     <color name="badge_offline">#DC2626</color>
+    <color name="ui_edge_shadow_ambient">#CC000000</color>
+    <color name="ui_edge_shadow_spot">#E6000000</color>
+    <color name="ui_text_shadow">#CC000000</color>
 </resources>

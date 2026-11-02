@@ -125,6 +125,23 @@ public class HttpStreamProbeTest {
         assertTrue(java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) < 2000);
     }
 
+    @Test public void diagnosticsBudgetIncludesAllRedirectRequests() {
+        for (int i = 0; i < 4; i++) {
+            final int next = i + 1;
+            server.createContext("/redirect-" + i, exchange -> {
+                try { Thread.sleep(180); } catch (InterruptedException ignored) { }
+                exchange.getResponseHeaders().add("Location", "/redirect-" + next);
+                exchange.sendResponseHeaders(302, -1); exchange.close();
+            });
+        }
+        route("/redirect-4", 200, ts());
+        long start = System.nanoTime();
+        HttpStreamProbe.Result result = new HttpStreamProbe().check(base + "/redirect-0", 2000, 350);
+        assertFalse(result.connected);
+        assertTrue(result.detail.contains("超时"));
+        assertTrue(java.util.concurrent.TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start) < 1500);
+    }
+
     // Android's test compiler exposes Java 8 APIs without the JDK-specific HTTP server module.
     private interface Handler { void handle(HttpExchange exchange) throws java.io.IOException; }
     private static final class Headers extends java.util.HashMap<String, String> {

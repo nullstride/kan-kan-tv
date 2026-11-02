@@ -91,7 +91,7 @@ public class VisibleSourceSettingsTest {
             dialog.findViewById(R.id.btn_settings_save).performClick();
             assertEquals(IptvSettings.ISP_BEIJING_TELECOM, new IptvSettings(activity).getIspProvider());
             assertTrue(activity.getCurrentChannel().getRawUrl().startsWith("rtp://225.1.8."));
-            assertEquals(149, ChannelRepository.getInstance(activity).getAllChannels().size());
+            assertEquals(176, ChannelRepository.getInstance(activity).getAllChannels().size());
         }
     }
 
@@ -193,6 +193,7 @@ public class VisibleSourceSettingsTest {
             MainActivity activity = lifecycle.get();
             IptvSettings prefs = new IptvSettings(activity);
             int mode = prefs.getStreamMode();
+            int playerType = prefs.getPlayerType();
             AlertDialog dialog = settings(activity);
             stage(dialog, CONTENT);
             ((RadioGroup) dialog.findViewById(R.id.rg_player_core)).check(R.id.rb_core_android);
@@ -201,7 +202,7 @@ public class VisibleSourceSettingsTest {
             Shadows.shadowOf(Looper.getMainLooper()).idle();
             assertEquals(ScannerActivity.class.getName(), Shadows.shadowOf(activity).getNextStartedActivity().getComponent().getClassName());
             assertEquals(IptvSettings.ISP_BEIJING_UNICOM, prefs.getIspProvider());
-            assertEquals(IptvSettings.PLAYER_IJK, prefs.getPlayerType());
+            assertEquals(playerType, prefs.getPlayerType());
             assertEquals(mode, prefs.getStreamMode());
         }
     }
