@@ -107,7 +107,8 @@ function readObjects(ids) {
 function detectBuffer(data, file, literals = []) {
   if (/\.(?:tar\.gz|tgz|zip|7z|rar)$/i.test(file)) {
     const digest = crypto.createHash('sha256').update(data).digest('hex');
-    return policy.upstreamSourceArchives?.[file] === digest ? []
+    const reviewed = policy.upstreamSourceArchives?.[file];
+    return (Array.isArray(reviewed) ? reviewed : [reviewed]).includes(digest) ? []
       : [{file, line: 1, rule: 'unreviewed-source-archive'}];
   }
   return detect(data.toString('utf8'), file, {

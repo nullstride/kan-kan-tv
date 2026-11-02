@@ -117,7 +117,7 @@ gradlew.bat --no-daemon testDebugUnitTest assembleDebug
 ```bat
 "%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe" devices -l
 "%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe" -s <device-serial> install --no-streaming -r app\build\outputs\apk\debug\app-debug.apk
-"%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe" -s <device-serial> shell am start -n com.bjunicom.iptv/.ui.MainActivity
+"%LOCALAPPDATA%\Android\Sdk\platform-tools\adb.exe" -s <device-serial> shell am start -n com.kankan.iptv/.ui.MainActivity
 ```
 
 将 `<device-serial>` 替换为本机已确认的设备；不要把实际编号写入版本控制。使用 `--no-streaming` 是因为本机此前流式安装出现超时；以明确 Success 和设备已安装版本核验为准。日志应落盘后短周期检查，安装未返回成功不能宣称已更新。
@@ -125,9 +125,9 @@ gradlew.bat --no-daemon testDebugUnitTest assembleDebug
 辅助取证命令（将 `<serial>` 替换为已确认设备）：
 
 ```text
-adb -s <serial> shell dumpsys gfxinfo com.bjunicom.iptv reset
-adb -s <serial> shell dumpsys gfxinfo com.bjunicom.iptv framestats
-adb -s <serial> shell dumpsys meminfo com.bjunicom.iptv
+adb -s <serial> shell dumpsys gfxinfo com.kankan.iptv reset
+adb -s <serial> shell dumpsys gfxinfo com.kankan.iptv framestats
+adb -s <serial> shell dumpsys meminfo com.kankan.iptv
 adb -s <serial> shell screenrecord --time-limit 20 /sdcard/kankan-glass.mp4
 adb -s <serial> pull /sdcard/kankan-glass.mp4 <本机证据目录>
 ```

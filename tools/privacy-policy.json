@@ -29,10 +29,31 @@
     ],
     "app/src/main/java/com/bjunicom/iptv/player/IjkVideoView.java": [
       "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/kankan/iptv/player/IRenderView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/kankan/iptv/player/MeasureHelper.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/kankan/iptv/player/SurfaceRenderView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/kankan/iptv/player/TextureRenderView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/kankan/iptv/player/IjkVideoView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
     ]
   },
   "upstreamSourceArchives": {
-    "third_party/sources/ijkplayer-k0.8.8.tar.gz": "ef54cec44fc9f7f0515a48b32c1f1a80aef4e76887316dda84e7ca1d2e4c09b0",
-    "third_party/sources/ffmpeg-ijk0.8.8.tar.gz": "58f01eaa93c91db3ed42a687f2489dcd937ecd0f443c261fb976fac30d114ad9"
+    "third_party/sources/ijkplayer-k0.8.8.tar.gz": [
+      "bfeb0676219a90abd742ff16388bec9c9b70465e557ad6651ef78043862541f6",
+      "ef54cec44fc9f7f0515a48b32c1f1a80aef4e76887316dda84e7ca1d2e4c09b0"
+    ],
+    "third_party/sources/ffmpeg-ijk0.8.8.tar.gz": [
+      "2a0d1e6187c9f86e4efffd4bc6096fa17a582c288b8567e1fd5c7d45ecc1c9c5",
+      "58f01eaa93c91db3ed42a687f2489dcd937ecd0f443c261fb976fac30d114ad9"
+    ]
   }
 }

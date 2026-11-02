@@ -14,7 +14,7 @@ for (const name of fs.readdirSync(path.join(root, 'app/src/main/assets'))) {
   assert.doesNotMatch(playlist, /https?:\/\/[^\s/@:]+:[^\s/@]+@/i, name);
 }
 for (const option of ['ENABLE_DEVICE_REPORTING', 'ENABLE_UPSTREAM_UPDATES']) {
-  assert.match(read('app/src/main/java/com/bjunicom/iptv/config/IptvSettings.java'),
+  assert.match(read('app/src/main/java/com/kankan/iptv/config/IptvSettings.java'),
     new RegExp(`\\b${option}\\s*=\\s*false\\s*;`), option);
 }
 const canonical = read('tools/playlist-inspect.sh');

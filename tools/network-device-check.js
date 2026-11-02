@@ -7,8 +7,8 @@ const assert = require('node:assert/strict');
 const serial = process.argv[2];
 const evidence = path.resolve(process.argv[3] || 'network-device-evidence');
 const adb = path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe');
-const qa = 'com.bjunicom.iptv.networkcheck';
-const main = 'com.bjunicom.iptv';
+const qa = 'com.kankan.iptv.networkcheck';
+const main = 'com.kankan.iptv';
 if (!serial) throw new Error('Usage: node tools/network-device-check.js <serial> <evidence-dir>');
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 function command(args, binary = false) {
@@ -49,7 +49,7 @@ async function mainPreferencesHash() {
 }
 async function launch() {
   await command(['shell', 'am', 'force-stop', qa]);
-  await command(['shell', 'am', 'start', '-n', qa + '/com.bjunicom.iptv.ui.MainActivity']);
+  await command(['shell', 'am', 'start', '-n', qa + '/com.kankan.iptv.ui.MainActivity']);
   await delay(1000);
 }
 async function run() {

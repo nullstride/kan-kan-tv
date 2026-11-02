@@ -16,12 +16,12 @@ function run(args, binary = false) {
 }
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function scene(name, mode, extras = [], video = false) {
-  run(['shell', 'am', 'start', '-S', '-n', 'com.bjunicom.iptv/.ui.GlassLabActivity',
+  run(['shell', 'am', 'start', '-S', '-n', 'com.kankan.iptv/.ui.GlassLabActivity',
     '--es', 'mode', mode, ...extras]);
   await pause(1500);
-  const pid = run(['shell', 'pidof', 'com.bjunicom.iptv']).trim();
+  const pid = run(['shell', 'pidof', 'com.kankan.iptv']).trim();
   if (!pid) throw Error('App did not start: ' + name);
-  run(['shell', 'dumpsys', 'gfxinfo', 'com.bjunicom.iptv', 'reset']);
+  run(['shell', 'dumpsys', 'gfxinfo', 'com.kankan.iptv', 'reset']);
   fs.writeFileSync(path.join(output, name + '.png'), run(['exec-out', 'screencap', '-p'], true));
   if (video) {
     const remote = '/sdcard/' + name + '.mp4';
@@ -33,7 +33,7 @@ async function scene(name, mode, extras = [], video = false) {
     });
     run(['pull', remote, path.join(output, name + '.mp4')]);
     fs.writeFileSync(path.join(output, name + '-gfx.txt'), run(['shell', 'dumpsys', 'gfxinfo',
-      'com.bjunicom.iptv', 'framestats']));
+      'com.kankan.iptv', 'framestats']));
   }
   const log = run(['logcat', '-d', '--pid=' + pid, '-s', 'VideoGlass:D', 'GlassLab:I', 'AndroidRuntime:E']);
   fs.writeFileSync(path.join(output, name + '.log'), log);
@@ -50,6 +50,6 @@ async function scene(name, mode, extras = [], video = false) {
   await scene('surface', 'surface', [], true);
   await scene('texture', 'texture', [], true);
   await scene('hidden', 'surface', ['--ez', 'hide_panels', 'true'], true);
-  run(['shell', 'am', 'start', '-S', '-n', 'com.bjunicom.iptv/.ui.MainActivity']);
+  run(['shell', 'am', 'start', '-S', '-n', 'com.kankan.iptv/.ui.MainActivity']);
   console.log('COMPLETE');
 })().catch(error => { console.error(error); process.exitCode = 1; });

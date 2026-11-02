@@ -11,7 +11,7 @@ typedef struct Decoder {
     AVPacket *packet;
 } Decoder;
 
-#define JNI_METHOD(name) Java_com_bjunicom_iptv_player_Mp2SoftwareDecoder_##name
+#define JNI_METHOD(name) Java_com_kankan_iptv_player_Mp2SoftwareDecoder_##name
 
 static void release_decoder(Decoder *decoder) {
     if (!decoder) return;

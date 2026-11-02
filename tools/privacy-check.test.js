@@ -52,7 +52,7 @@ test('rejects private artifacts and modified playlist authentication', () => {
 });
 
 test('preserves reviewed upstream copyright while blocking extra contact details', () => {
-  const file = 'app/src/main/java/com/bjunicom/iptv/player/IRenderView.java';
+  const file = 'app/src/main/java/com/kankan/iptv/player/IRenderView.java';
   const upstream = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
   assert.deepEqual(detect(upstream, file), []);
   assert.ok(detect(upstream + '\n' + secretEmail, file).some(x => x.rule === 'email'));

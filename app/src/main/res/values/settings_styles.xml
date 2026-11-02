@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="ThemeOverlay.BjUnicomIptv.StatusDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="colorSurface">@color/settings_canvas</item>
+        <item name="colorOnSurface">@color/settings_label</item>
+        <item name="colorOnSurfaceVariant">@color/settings_secondary_label</item>
+        <item name="colorPrimary">@color/settings_label</item>
+    </style>
     <style name="Widget.BjUnicomIptv.SettingsChoice" parent="Widget.AppCompat.CompoundButton.RadioButton">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

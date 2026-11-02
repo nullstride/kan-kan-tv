@@ -7,7 +7,7 @@ const serial = process.argv[2];
 const directory = path.resolve(process.argv[3] || 'device-source-settings');
 if (!serial) throw new Error('Usage: node tools/source-settings-device-check.js <serial> <evidence-dir>');
 const adb = path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe');
-const packageName = 'com.bjunicom.iptv';
+const packageName = 'com.kankan.iptv';
 const results = [];
 function command(args, binary = false) {
   return new Promise((resolve, reject) => cp.execFile('cmd.exe', ['/d', '/c', adb, '-s', serial, ...args],

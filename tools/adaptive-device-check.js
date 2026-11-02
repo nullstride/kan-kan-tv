@@ -10,7 +10,7 @@ const compact = process.argv.includes('--compact');
 const phone = compact || process.argv.includes('--phone');
 if (!serial) throw new Error('Usage: node tools/adaptive-device-check.js <serial> <evidence-dir> [--compact | --phone]');
 const adb = path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe');
-const pkg = 'com.bjunicom.iptv';
+const pkg = 'com.kankan.iptv';
 const passed = [];
 const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
 const command = (args, binary = false) => new Promise((resolve, reject) => {

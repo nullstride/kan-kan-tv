@@ -57,11 +57,11 @@ tools\aio.cmd install <device-serial>
 测试场景必须重建 Activity，避免 `am start` 只把新参数投递给旧实例：
 
 ```text
-adb -s <serial> shell am start -S -n com.bjunicom.iptv/.ui.GlassLabActivity --es mode checker
-adb -s <serial> shell am start -S -n com.bjunicom.iptv/.ui.GlassLabActivity --es mode white
-adb -s <serial> shell am start -S -n com.bjunicom.iptv/.ui.GlassLabActivity --es mode surface
-adb -s <serial> shell am start -S -n com.bjunicom.iptv/.ui.GlassLabActivity --es mode texture --ez hide_panels true
-adb -s <serial> shell am start -S -n com.bjunicom.iptv/.ui.GlassLabActivity --es mode checker --ez glass_force_fallback true
+adb -s <serial> shell am start -S -n com.kankan.iptv/.ui.GlassLabActivity --es mode checker
+adb -s <serial> shell am start -S -n com.kankan.iptv/.ui.GlassLabActivity --es mode white
+adb -s <serial> shell am start -S -n com.kankan.iptv/.ui.GlassLabActivity --es mode surface
+adb -s <serial> shell am start -S -n com.kankan.iptv/.ui.GlassLabActivity --es mode texture --ez hide_panels true
+adb -s <serial> shell am start -S -n com.kankan.iptv/.ui.GlassLabActivity --es mode checker --ez glass_force_fallback true
 ```
 
 视频读取应用 external-files 下的 `glass-test.mp4`。测试用自生成 MPEG-4 网格和 [Sintel 预告片](https://media.w3.org/2010/05/sintel/trailer.mp4)，均不纳入生产频道和 APK。`tools/glass_video_check.py generate <path>` 生成运动网格，`inspect <recording>` 导出逐帧联系表和 ROI 数据，需要本机 Python/OpenCV/Pillow/NumPy。

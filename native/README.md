@@ -2,6 +2,8 @@
 
 `manifest.json` 记录每个 Maven AAR、官方二进制、补丁后二进制、源码归档和本项目 JNI 库的 SHA-256。
 
+随附源码归档仅规范了 iOS 工程文件引用和 FFmpeg 测试元数据，代码与许可保持完整。可用 `node tools/prepare-source-archives.js` 重复执行相同处理，归档校验值以 `manifest.json` 为准。
+
 ## 对应关系
 
 - `libijkplayer.so`、`libijksdl.so`：与官方 `tv.danmaku.ijk.media:ijkplayer-{armv7a,arm64,x86,x86_64}:0.8.8` 中的文件逐字节一致。源码在 `third_party/sources/ijkplayer-k0.8.8.tar.gz`。

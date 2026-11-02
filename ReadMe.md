@@ -40,6 +40,8 @@ chmod +x gradlew
 
 APK 位于常规的 app/build/outputs/apk/；Windows 隔离验证构建位于 build/network-validation/app/outputs/apk/。
 
+应用包名为 `com.kankan.iptv`。包名变更后会作为独立应用安装，原应用的设置与收藏不会自动迁移。
+
 ```text
 node --test tools/privacy-check.test.js
 node tools/privacy-check.js history HEAD

@@ -4,8 +4,8 @@
   "ffmpegTag": "ff3.4--ijk0.8.7--20180103--001",
   "ffmpegCommit": "b26eaa6d8cd0493f3bec47e3bcd40712397afbc8",
   "sourceArchives": {
-    "ijkplayer-k0.8.8.tar.gz": "ef54cec44fc9f7f0515a48b32c1f1a80aef4e76887316dda84e7ca1d2e4c09b0",
-    "ffmpeg-ijk0.8.8.tar.gz": "58f01eaa93c91db3ed42a687f2489dcd937ecd0f443c261fb976fac30d114ad9"
+    "ijkplayer-k0.8.8.tar.gz": "bfeb0676219a90abd742ff16388bec9c9b70465e557ad6651ef78043862541f6",
+    "ffmpeg-ijk0.8.8.tar.gz": "2a0d1e6187c9f86e4efffd4bc6096fa17a582c288b8567e1fd5c7d45ecc1c9c5"
   },
   "artifacts": [
     {
@@ -170,9 +170,9 @@
     }
   ],
   "jniLibraries": {
-    "arm64-v8a": "3d791d3900830fc11e737e31803d5b2cc82e8b4fb78d8eb466c721eeb47c7567",
-    "armeabi-v7a": "8aabb46d1d7b73ec8e14d2ec2957c9f2c4c0dce7e3c204b61566fec69a895146",
-    "x86": "eb623b155aa1c150854eaab8540adbcfd0e387907d42fa300e0938461062cc39",
-    "x86_64": "1836280d69872676d36da27632658dd6a9d27131c2b14e12b9a6518bf29103b9"
+    "arm64-v8a": "43a2f1c150acccea569835a666f26284e3db454f39eb0cbd425c9bd1637e684a",
+    "armeabi-v7a": "831e75244231a3f84e720797c023d70498b7c6cd17b3254dc1d8bfdba94baad0",
+    "x86": "6473d33ccab43c9509177ed6c3acec4a516ceeba5ac6802b785d32a108626de8",
+    "x86_64": "16718801c5c968fc0b05918cd9ba95cb5083a30e7ae88f756e643d91ec31d97b"
   }
 }
