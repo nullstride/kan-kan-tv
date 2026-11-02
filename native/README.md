@@ -26,4 +26,6 @@ node tools/native-libraries.js build <clang-executable>
 
 ## 分发
 
+开源准备阶段已完成四种 ABI 的 JNI 编译、共享库导出与依赖检查，以及应用 JVM 测试和 Debug APK 构建。当前没有连接的 Android 设备，新 JNI 桥接的实际 MP2 播放、音频输出与设备兼容性尚待真机验证。旧版本的真机验证记录不能代替本次新 JNI 的验证。
+
 这些库采用 LGPL-2.1-or-later。发布 APK 时应同时提供这些源码、补丁、构建说明和许可证；本仓库在每个源码快照中提供它们，并在 APK 的“开源许可”中说明使用 FFmpeg/ijkplayer。不得给第三方 LGPL 部分附加禁止修改或逆向调试的限制。不能把库的 LGPL 许可改为根 MIT 许可。

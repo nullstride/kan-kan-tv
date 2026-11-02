@@ -24,13 +24,11 @@ jobs:
       - run: node tools/public-release-check.js
       - run: sh tools/test-playlist-inspect.sh
       - run: chmod +x gradlew && ./gradlew --no-daemon testDebugUnitTest assembleDebug
+      - name: Bundle the exact corresponding source snapshot
+        run: git archive --format=tar.gz --output=kankan-tv-source.tar.gz HEAD
       - uses: actions/upload-artifact@v4
         with:
           name: kankan-tv-debug-with-sources
           path: |
             app/build/outputs/apk/debug/*.apk
-            native/
-            third_party/sources/
-            LICENSE
-            LICENSES/
-            THIRD_PARTY_NOTICES.md
+            kankan-tv-source.tar.gz
