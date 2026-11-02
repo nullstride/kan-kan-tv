@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:background="@drawable/bg_settings_surface" android:paddingStart="28dp" android:paddingEnd="22dp" android:paddingBottom="10dp">
+ <LinearLayout android:id="@+id/m3u_phone_header" android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center_vertical" android:orientation="horizontal">
+  <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="导入 M3U" android:textColor="@color/text_primary" android:textSize="17sp" />
+  <TextView style="@style/Widget.BjUnicomIptv.SettingsHint" android:layout_width="0dp" android:layout_weight="1" android:layout_marginStart="12dp" android:text="返回设置后保存生效" />
+ </LinearLayout>
+ <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:layout_marginBottom="6dp" android:orientation="horizontal">
+  <androidx.appcompat.widget.AppCompatButton android:id="@+id/m3u_tab_content" android:layout_marginEnd="6dp" style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_width="wrap_content" android:layout_height="44dp" android:text="内容"  /><androidx.appcompat.widget.AppCompatButton android:id="@+id/m3u_tab_report" style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_width="wrap_content" android:layout_height="44dp" android:text="检测结果"  />
+ </LinearLayout>
+ <FrameLayout android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1">
+  <LinearLayout android:id="@+id/m3u_content_panel" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical">
+   <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:orientation="horizontal">
+    <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_pick_m3u_file" android:layout_marginEnd="6dp" style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_width="wrap_content" android:layout_height="44dp" android:text="选择文件"  /><androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_scan_local_m3u_files" android:layout_marginEnd="6dp" style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_width="wrap_content" android:layout_height="44dp" android:text="设备 / U 盘"  /><androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_load_sample_m3u" style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_width="wrap_content" android:layout_height="44dp" android:text="已存 / 示例"  />
+   </LinearLayout>
+   <TextView android:id="@+id/tv_custom_m3u_filename" style="@style/Widget.BjUnicomIptv.SettingsHint" android:singleLine="true" android:ellipsize="middle" android:text="未选择文件 · 可直接粘贴内容" />
+   <EditText android:id="@+id/et_custom_m3u_content" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_marginTop="4dp" android:background="@drawable/bg_settings_input" android:fontFamily="monospace" android:gravity="top|start" android:hint="在此粘贴 M3U 内容，也可输入本地文件路径" android:inputType="textMultiLine|textNoSuggestions" android:padding="10dp" android:scrollbars="vertical" android:textColor="@color/text_primary" android:textColorHint="@color/text_muted" android:textSize="12sp" />
+  </LinearLayout>
+  <ScrollView android:id="@+id/m3u_report_panel" android:layout_width="match_parent" android:layout_height="match_parent" android:visibility="gone" android:paddingVertical="8dp">
+   <TextView android:id="@+id/tv_custom_m3u_report" style="@style/Widget.BjUnicomIptv.SettingsHint" android:text="尚未检查列表。检测格式与频道条目后，在这里查看报告。" />
+  </ScrollView>
+ </FrameLayout>
+ <ProgressBar android:id="@+id/pb_custom_m3u_probe" style="?android:attr/progressBarStyleHorizontal" android:layout_width="match_parent" android:layout_height="4dp" android:max="100" android:visibility="gone" />
+ <LinearLayout android:layout_width="match_parent" android:layout_height="52dp" android:gravity="center_vertical" android:orientation="horizontal">
+  <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_inspect_m3u_content" android:layout_marginEnd="6dp" style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_width="wrap_content" android:layout_height="44dp" android:text="检查列表"  /><androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_probe_m3u_streams" style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_width="wrap_content" android:layout_height="44dp" android:text="检查频道连接"  />
+  <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+  <LinearLayout android:id="@+id/m3u_stage_actions" android:layout_width="wrap_content" android:layout_height="44dp" android:orientation="horizontal" />
+ </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,462 @@
+{
+  "date": "2026-10-27",
+  "base": "34114087b6220f8664e690a944fa799474998e68",
+  "localHead": "c17bed20248b0596ebdb55dc6348e24ea555f36f",
+  "upstream": "8fcc35502cacd21c65705c64c18ba122dbecf83f",
+  "sourceUrl": "https://github.com/anITer/utv",
+  "mode": "source-integration-in-working-tree",
+  "uiBaseline": [
+    {
+      "path": "app/src/debug/java/com/bjunicom/iptv/ui/GlassLabActivity.java",
+      "sha256": "7ab79058cccbe2f406cb6ffd8f3fb94a2ef3b6fb8275d5dc17bcdfd201df5ff3"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/GlassCaptureGate.java",
+      "sha256": "f5c14a5eb91e4324b0c084484d1f7928f294035cdb5c571706ba20aefd11e4d0"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/GlassForeground.java",
+      "sha256": "929bd68e99676a0b43e0f9163beb8ab14d9b8f43b704fb60015734fbf0a7d3ec"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/GlassLens.java",
+      "sha256": "e533b9abe5b6f0400457011b0cb04d53fdbc7643d474a58dc9b1393aafa344c4"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/GlassMotion.java",
+      "sha256": "508f4ebb2e2bdce19bc97e01ff3a0a36c299f58f77f8f35bd22783079db2c1a5"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/VideoGlass.java",
+      "sha256": "a8300f653745d448d827420618d898d3f16e3e67afd66c4d87742bcbab7f4046"
+    },
+    {
+      "path": "app/src/main/res/color/control_text.xml",
+      "sha256": "a345b98adc08f7e6d81e5093c1ed4ad410a75a0bc986152dbd10e10335f6df59"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/preview_landscape.jpg",
+      "sha256": "3811a8299c2204f2d354ec126a2dcb6e9fb61c8ff6ae8b19ccddef7995eab452"
+    },
+    {
+      "path": "app/src/main/res/raw/liquidglass_effect.agsl",
+      "sha256": "7f93b006846c9f29229412782d6a999bcc3ab495f05c190bb84e78b1823c0998"
+    },
+    {
+      "path": "app/src/main/res/raw/liquidglass_reference.agsl",
+      "sha256": "4eb72130000b3b4276899713e0e45da4cb6141c759f7cc03b2580f6737b4f5ae"
+    },
+    {
+      "path": "app/src/test/java/com/bjunicom/iptv/ui/GlassCaptureGateTest.java",
+      "sha256": "8023f1f8c3a7d03fc346dfdff405b75d9a0644e3eeda49616406588a710fc480"
+    },
+    {
+      "path": "app/src/test/java/com/bjunicom/iptv/ui/GlassForegroundTest.java",
+      "sha256": "1234451b69ef735748d280c7bdaf8d9f2ca0911e7694c14bd4902e90f06d7821"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/ic_tv_banner.png",
+      "sha256": "f893ac917fcfbc30ca0fcf1d878fde0dd59388fb85217607079758a43130c356"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_badge.xml",
+      "sha256": "15a0ce6beb7534e8950f1c7fbed75f19556ad63f190a6d9e5643be4541177132"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_channel_item.xml",
+      "sha256": "8bd43648d4721e1d6fc4c2f848c5b51f3cd14e29045b9b4d9c79f15e2373fc33"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_channel_num_pill.xml",
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_group_tab.xml",
+      "sha256": "7bd11d65b10fcb17b6a31175d2489098e957396a31ec4b7b300273e43e130fc1"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_card_container.xml",
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_dialog_surface.xml",
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_drawer_sheet.xml",
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_hud_surface.xml",
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_numpad_key.xml",
+      "sha256": "7bd11d65b10fcb17b6a31175d2489098e957396a31ec4b7b300273e43e130fc1"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_primary_button.xml",
+      "sha256": "7bd11d65b10fcb17b6a31175d2489098e957396a31ec4b7b300273e43e130fc1"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_search_bar.xml",
+      "sha256": "121ca3dc826bb65c546c5f453a0961f5b84291bbea3b38a6e10a291eb96d7879"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_res_badge_4k.xml",
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_res_badge_hd.xml",
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_res_badge_sd.xml",
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_category.xml",
+      "sha256": "d23c0195cea9d8957c6fc28d90d916294883c935f80f492531355baf7335b7d2"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_input.xml",
+      "sha256": "5999f29df2353074871f48859e1874f19168e8d12edd6ba6995dc8aeab55b14c"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_row.xml",
+      "sha256": "025e5180dfb8fd47f2d01bcf35d1f85019526d28b68ce68c6f168d1ad9876f7d"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_save.xml",
+      "sha256": "5a1ef7842ef78011c3e33322f49f0cc05232d9fe1aae5377259a103bb3d7f9da"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_surface.xml",
+      "sha256": "baec2e1335f9403f97a28775363e0eeaf9d61bf83f7e87815d0bf890402958a9"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_aspect_ratio.xml",
+      "sha256": "28b462d701c76e84b583e596eeb726ac6d936b0e4ed3f5754e43f9c952a167c7"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_back.xml",
+      "sha256": "ce58333b395dfaa8b25d6462e6d377471f9d40d6b260cb0cc4ebf0ceb59edd81"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_backspace.xml",
+      "sha256": "316b59481ceb985fb3cecd91434c6e8605348416ce849f02e2c340359541e0c1"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_dialpad.xml",
+      "sha256": "b6ef808735a8d1992233a8a35734a8ea0072bb102778451c118770400c4ec62e"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_export.xml",
+      "sha256": "de3eb238bc538bb937db7e799ad8d9a528442acea33df3f5827f3902272196c2"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_menu.xml",
+      "sha256": "225d0945eba3fe1d5f0088e88453974ae89e80411b5ecc65adef3834b4ab27fb"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_next.xml",
+      "sha256": "6449427dca431925755ccc736ce2702c557a3dc19e3e535a1c64ec9f38a21d2a"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_play.xml",
+      "sha256": "114fbe8505d966e28b73b690b5a87fef597c032903dd77c1726c278ca431a0f2"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_prev.xml",
+      "sha256": "3fa4c533f92ef351365e48d7a23335ce3fe91302d203176ba0603d1925bb77e4"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_radar.xml",
+      "sha256": "744f722c612960d6ed6e1447e384b13b85c3034b2edd5d04efccb8cf32319b7b"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_refresh.xml",
+      "sha256": "8887ab1140a49d557a398f320e664d28f2c94ddbf09e0344ac73f6ffdd52b283"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_settings.xml",
+      "sha256": "39341e75ffcf9e9e9e1180f06c7916d99f35acfd19b9b1705905495806c379ae"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_star_filled.xml",
+      "sha256": "f773cc54df2ddfb56dcb45bbd56dd688c60eee904ac483a692ba3ce818c05bbe"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_star_outline.xml",
+      "sha256": "5b40a151c8143d60e1dee64e6f2661f8087dc014bbb07a7265ed4e439d1c6d59"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_stop.xml",
+      "sha256": "fbc4a1919470670bd33fd4d46b991e965812d810f4ef4d48b54bee2260b22fad"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher.xml",
+      "sha256": "7fba96df4be65995771abf284a199604793fb71590fd2af521dbc06a64e0042d"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher_background.xml",
+      "sha256": "9d7e21ce75a4d37895713b45b7d270cc9008d0452cadc5dad95a48260f2f68f6"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "sha256": "8b3e14a2a0516fbd679aa6c4669d16643529e1c2f4d101c7f7d3c90c2c5d1c85"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher_monochrome.xml",
+      "sha256": "21060b7e6a71fe165b55379226d67d8c27c61f7858b2ba4aa0c490bdaa928aa6"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_md_live_dot.xml",
+      "sha256": "e01c2b9eb7453a9cc56659f305ea460c55287f3616e48d44a5b97dbf339cc0bf"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_md_search.xml",
+      "sha256": "ea4bb38da376d3789c95e1362029097e515344c63d43dd13c66fe9380a8dd393"
+    },
+    {
+      "path": "app/src/main/res/layout/activity_main.xml",
+      "sha256": "e83d56beab99e1483da28e099de1e71f064564bdfb4dfc225911a5fc2555643f"
+    },
+    {
+      "path": "app/src/main/res/layout/activity_scanner.xml",
+      "sha256": "10111719bc83e95b2a258243b684acfecd41b135d5a820b2b9512705ac3fea1c"
+    },
+    {
+      "path": "app/src/main/res/layout/dialog_player_settings.xml",
+      "sha256": "90390fe2021331c6cc5f7735e40c3e1680bde7e8a5436457802a0754101dded8"
+    },
+    {
+      "path": "app/src/main/res/layout/dialog_virtual_numpad.xml",
+      "sha256": "c13c81a7e091f3a7d2bc1d62e990f2d4325f4fa0546358215c5e6218df6a2409"
+    },
+    {
+      "path": "app/src/main/res/layout/item_category_tab.xml",
+      "sha256": "adc0f8194e222b37a4dbccd5a689d26f3937bd04fc68602ec716709d1e5d5240"
+    },
+    {
+      "path": "app/src/main/res/layout/item_channel.xml",
+      "sha256": "cd2defb16e2c84333f9288723633d53e87c14ef70cb91f5f5b61cfe621315739"
+    },
+    {
+      "path": "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "sha256": "efcdbc40350be2d99b8cbbdf030b83bc340b5d69461814f9cf118fc4b1d70703"
+    },
+    {
+      "path": "app/src/main/res/mipmap-anydpi-v33/ic_launcher.xml",
+      "sha256": "f84de941a326962944256503c9067426a6feaf897483a99a6ee0489a07a397bb"
+    },
+    {
+      "path": "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "sha256": "7fba96df4be65995771abf284a199604793fb71590fd2af521dbc06a64e0042d"
+    },
+    {
+      "path": "app/src/main/res/values/branding.xml",
+      "sha256": "240431c816e394feb0a7e8d8737148d9a9188baf7d7955571f8708338a8fd393"
+    },
+    {
+      "path": "app/src/main/res/values/colors.xml",
+      "sha256": "75132c670ba8b81a855189d450cebf725ed646dad42e4ec620b18a5f62cdfc77"
+    },
+    {
+      "path": "app/src/main/res/values/settings_styles.xml",
+      "sha256": "9ba2e7923edb603730726b130b13acf6ff590bbae20c8376c5d8f0659f627fdc"
+    },
+    {
+      "path": "app/src/main/res/values/strings.xml",
+      "sha256": "3182ca29800dbe9c2aa492bdafeafbba9053b2d17d43ee8e5eb8af7297dd04e2"
+    },
+    {
+      "path": "app/src/main/res/values/themes.xml",
+      "sha256": "b467b6ad47ff68f83bb9ec20b9eb0ea2b41f397d84e83febda2c0d82f33e4b90"
+    },
+    {
+      "path": "app/src/main/res/xml/network_security_config.xml",
+      "sha256": "0bdedb01dc684b6678829cc62c49e1e96a77d1fee51d3d40d20ba2cba4d56bad"
+    }
+  ],
+  "tests": [
+    {
+      "suite": "TEST-com.bjunicom.iptv.M3uParserTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.IjkStartupPolicyTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.IjkVideoViewProbeOptionsTest.xml",
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.IjkVideoViewRecoveryTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.MulticastPreloaderTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.PlaybackLifecycleTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.PlaybackPolicyTest.xml",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.RtpTsPacketParserTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.TsStartupBufferTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.UtvPlayerRecoveryTest.xml",
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.player.UtvStreamDataSourceTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.StartupSmokeTest.xml",
+      "tests": 11,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.ui.GlassCaptureGateTest.xml",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.ui.GlassForegroundTest.xml",
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "suite": "TEST-com.bjunicom.iptv.UpstreamFeatureIntegrationTest.xml",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "uiComparison": {
+    "device": "OPPO PKJ110",
+    "networkSettingsHierarchyIdentical": true,
+    "visualReview": "passed",
+    "screenshotBytesIdentical": false
+  },
+  "upstreamServices": {
+    "automaticUpdates": false,
+    "deviceReporting": false
+  },
+  "limitations": [
+    "Live IPTV network and 4K/MP2 hardware playback have not been verified on a target IPTV box."
+  ],
+  "uiProtection": {
+    "files": 68,
+    "changed": []
+  },
+  "padValidation": {
+    "serial": "<device-serial>",
+    "manufacturer": "vivo",
+    "model": "PA2455",
+    "sdk": 34,
+    "resolution": "2800x1968 landscape",
+    "settingsPages": [
+      {
+        "name": "network",
+        "beforeFile": "before-settings",
+        "afterFile": "after-settings",
+        "sameUiSignature": true
+      },
+      {
+        "name": "playback",
+        "beforeFile": "before-playback-settings",
+        "afterFile": "after-playback-settings",
+        "sameUiSignature": true
+      },
+      {
+        "name": "channels",
+        "beforeFile": "before-channel-settings",
+        "afterFile": "after-channel-settings",
+        "sameUiSignature": true
+      }
+    ],
+    "installedVersion": {
+      "versionCode": 130,
+      "versionName": "1.3.0"
+    },
+    "visualReview": {
+      "settings": "passed",
+      "channelDrawer": "reviewed",
+      "pixelIdenticalClaim": false
+    },
+    "glassRegression": {
+      "exitCode": 0,
+      "scenarios": [
+        "white",
+        "black",
+        "photo",
+        "checker",
+        "fallback-white",
+        "surface",
+        "texture",
+        "hidden"
+      ],
+      "passed": 8,
+      "backend": "AGSL",
+      "surfaceViewVideoStarted": true,
+      "textureViewVideoStarted": true,
+      "evidenceDirectory": "pad/glass-check",
+      "log": "pad/glass-device-check.log",
+      "scope": "Local fixture rendering and playback startup; does not establish live IPTV, dynamic video performance, or 4K MP2 acceptance."
+    }
+  }
+}

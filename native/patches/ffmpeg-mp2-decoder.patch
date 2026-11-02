@@ -1,0 +1,15 @@
+--- a/libavcodec/mpegaudiodec_float.c
++++ b/libavcodec/mpegaudiodec_float.c
+@@ -74,10 +74,10 @@
+ #endif
+ #if CONFIG_MP3FLOAT_DECODER
+ AVCodec ff_mp3float_decoder = {
+-    .name           = "mp3float",
++    .name           = "mp2",
+     .long_name      = NULL_IF_CONFIG_SMALL("MP3 (MPEG audio layer 3)"),
+     .type           = AVMEDIA_TYPE_AUDIO,
+-    .id             = AV_CODEC_ID_MP3,
++    .id             = AV_CODEC_ID_MP2,
+     .priv_data_size = sizeof(MPADecodeContext),
+     .init           = decode_init,
+     .close          = decode_close,

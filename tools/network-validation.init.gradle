@@ -1,0 +1,13 @@
+// Keep validation artifacts separate from other active Android builds on Windows.
+def qaNetwork = gradle.startParameter.projectProperties.containsKey('networkCheckQa')
+gradle.beforeProject { project ->
+    def validationRoot = new File(project.rootProject.projectDir, qaNetwork ? 'build/network-validation-qa' : 'build/network-validation')
+    project.layout.buildDirectory.set(new File(validationRoot, project.name))
+    project.pluginManager.withPlugin('com.android.application') {
+        if (qaNetwork) {
+            project.extensions.getByName('androidComponents').finalizeDsl { android ->
+                android.buildTypes.getByName('debug').applicationIdSuffix = '.networkcheck'
+            }
+        }
+    }
+}

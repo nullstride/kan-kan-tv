@@ -1,0 +1,7 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application>
+        <!-- Explicit ADB-only optical fixture. No launcher entry and absent from release APKs. -->
+        <activity android:name=".ui.GlassLabActivity" android:exported="true"
+            android:screenOrientation="landscape" />
+    </application>
+</manifest>

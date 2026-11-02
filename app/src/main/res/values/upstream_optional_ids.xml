@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Optional upstream controls are absent from the retained custom layouts. -->
+    <item type="id" name="btn_import_m3u" />
+    <item type="id" name="btn_apply_scan_m3u" />
+    <item type="id" name="sv_scanner_params" />
+</resources>

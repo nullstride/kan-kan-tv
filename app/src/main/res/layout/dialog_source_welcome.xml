@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/welcome_surface"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:paddingHorizontal="20dp" android:paddingVertical="12dp"
+    android:clipToOutline="true">
+
+    <TextView android:id="@+id/welcome_title"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:accessibilityHeading="true" android:includeFontPadding="false"
+        android:fontFamily="sans-serif-medium" android:text="选择节目源"
+        android:textColor="@color/settings_label" android:textSize="20sp" />
+    <TextView android:id="@+id/welcome_hint"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="4dp" android:includeFontPadding="false"
+        android:text="北京地区请选择对应运营商；其他地区请导入当地频道列表。"
+        android:textColor="@color/settings_label" android:textSize="14sp" />
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_weight="1" android:layout_marginTop="8dp"
+        android:clipToPadding="false" android:fillViewport="true" android:overScrollMode="ifContentScrolls">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:baselineAligned="false" android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/welcome_source_unicom"
+                    style="@style/Widget.BjUnicomIptv.WelcomeChoice"
+                    android:layout_marginEnd="5dp" android:text="北京联通家庭网络"
+                    android:nextFocusRight="@id/welcome_source_mobile"
+                    android:nextFocusDown="@id/welcome_source_telecom" />
+                <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/welcome_source_mobile"
+                    style="@style/Widget.BjUnicomIptv.WelcomeChoice"
+                    android:layout_marginStart="5dp" android:text="北京移动家庭网络"
+                    android:nextFocusLeft="@id/welcome_source_unicom"
+                    android:nextFocusDown="@id/welcome_source_import" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:baselineAligned="false" android:orientation="horizontal">
+                <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/welcome_source_telecom"
+                    style="@style/Widget.BjUnicomIptv.WelcomeChoice"
+                    android:layout_marginEnd="5dp" android:text="北京电信家庭网络"
+                    android:nextFocusUp="@id/welcome_source_unicom"
+                    android:nextFocusRight="@id/welcome_source_import"
+                    android:nextFocusDown="@id/btn_welcome_check" />
+                <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/welcome_source_import"
+                    style="@style/Widget.BjUnicomIptv.WelcomeChoice"
+                    android:layout_marginStart="5dp" android:text="其他网络：导入频道列表"
+                    android:nextFocusUp="@id/welcome_source_mobile"
+                    android:nextFocusLeft="@id/welcome_source_telecom"
+                    android:nextFocusDown="@id/btn_welcome_confirm" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+        android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_welcome_check"
+            style="@style/Widget.BjUnicomIptv.WelcomeAction"
+            android:background="@drawable/bg_settings_secondary_button"
+            android:text="先检测可用源" android:textColor="@color/settings_control_text" />
+        <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_welcome_later"
+            style="@style/Widget.BjUnicomIptv.WelcomeAction"
+            android:layout_marginStart="8dp" android:background="@drawable/bg_settings_secondary_button"
+            android:text="稍后设置" android:textColor="@color/settings_control_text" />
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_welcome_confirm"
+            style="@style/Widget.BjUnicomIptv.WelcomeAction"
+            android:layout_width="124dp" android:layout_marginStart="8dp"
+            android:background="@drawable/bg_settings_save" android:enabled="false"
+            android:text="下一步" android:textColor="@color/settings_save_text" />
+    </LinearLayout>
+</LinearLayout>

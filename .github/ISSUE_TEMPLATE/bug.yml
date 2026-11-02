@@ -1,0 +1,23 @@
+name: 问题反馈
+description: 提供已脱敏的复现步骤
+body:
+  - type: markdown
+    attributes:
+      value: 请勿提交账号参数、私人 M3U、邮箱、家庭路径、设备序列号或未经脱敏的截图和日志。
+  - type: input
+    id: version
+    attributes:
+      label: 应用版本
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: 设备型号与 Android 版本
+      description: 只写型号，不要填写序列号或 MAC。
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤与预期结果
+    validations:
+      required: true

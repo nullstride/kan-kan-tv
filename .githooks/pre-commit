@@ -1,0 +1,2 @@
+#!/usr/bin/env node
+require('../tools/privacy-check.js').main(['staged']);

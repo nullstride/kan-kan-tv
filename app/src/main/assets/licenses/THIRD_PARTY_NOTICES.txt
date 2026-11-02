@@ -1,0 +1,10 @@
+KanKan TV（看看电视）
+
+本软件使用 FFmpeg 和 ijkplayer，采用 GNU LGPL 2.1 或更新版本；对应源码、补丁与构建说明随项目提供。
+
+应用基础来自 anITer/utv（MIT）。播放器示例衍生文件、ExoPlayer、AndroidX、Material Components 和 Android JNI 头文件分别保留 Apache 2.0 声明。玻璃效果参考保留 Donny Yang 的 MIT 许可。
+
+完整组件清单与源码：https://github.com/nullstride/kan-kan-tv
+原生源码：native/；归档：third_party/sources/
+
+本项目不拥有电视节目内容，不提供账号或订阅授权。

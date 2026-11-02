@@ -1,0 +1,212 @@
+/*
+ * MIT License
+ *
+ * Copyright (c) 2025 QmDeve
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ *
+ * ===========================================
+ * Project: AndroidLiquidGlassView
+ * Created Date: 2025-11-01
+ * Author: QmDeve
+ * GitHub: https://github.com/QmDeve/AndroidLiquidGlassView
+ *
+ * Contributors:
+ * - Donny Yale - https://github.com/QmDeve
+ * - Ahmed Sbai - https://github.com/sbaiahmed1
+ * ===========================================
+ */
+
+// Local adaptation: bounded video sampling and a small GPU blur, 2026-10-26.
+uniform shader content;
+uniform shader previousContent;
+uniform float frameBlend;
+uniform float4 sourceBounds;
+uniform float blurRadius;
+uniform float pixelDensity;
+uniform float2 lightPosition;
+uniform float interiorBlurRadius;
+uniform float regularStrength;
+
+half4 boundedSample(float2 p) {
+    if (p.x < sourceBounds.x || p.y < sourceBounds.y || p.x >= sourceBounds.z || p.y >= sourceBounds.w) return half4(0.0, 0.0, 0.0, 1.0);
+    return mix(previousContent.eval(p), content.eval(p), frameBlend);
+}
+
+// A clear optical lip surrounds the more gently scattered reading surface.
+half4 sampleBackdrop(float2 p, float radius) {
+    float2 dx = float2(radius, 0.0);
+    float2 dy = float2(0.0, radius);
+    return boundedSample(p) * 0.25
+        + (boundedSample(p + dx) + boundedSample(p - dx)
+        + boundedSample(p + dy) + boundedSample(p - dy)) * 0.125
+        + (boundedSample(p + dx + dy) + boundedSample(p + dx - dy)
+        + boundedSample(p - dx + dy) + boundedSample(p - dx - dy)) * 0.0625;
+}
+
+// Compress only bright regions of the reading material, preserving hue and dark detail.
+// This is an approximation of adaptive luminosity, not Apple's proprietary renderer.
+half4 readingSurface(half4 color, float strength) {
+    float luminance = dot(color.rgb, half3(0.2126, 0.7152, 0.0722));
+    float highlight = max(luminance - 0.4, 0.0);
+    float mapped = min(luminance, 0.4) + highlight / (1.0 + 2.0 * highlight);
+    float gain = mix(1.0, mapped / max(luminance, 0.001), strength);
+    return half4(color.rgb * gain, color.a);
+}
+uniform float2 size;
+uniform float2 offset;
+uniform float4 cornerRadii;
+uniform float refractionHeight;
+uniform float refractionAmount;
+uniform float depthEffect;
+uniform float chromaticAberration;
+
+uniform float contrast;
+uniform float whitePoint;
+uniform float chromaMultiplier;
+
+uniform float3 tintColor;
+uniform float tintAlpha;
+
+const half3 rgbToY = half3(0.2126, 0.7152, 0.0722);
+
+float radiusAt(float2 coord, float4 radii) {
+    if (coord.x >= 0.0) {
+        if (coord.y <= 0.0) return radii.y;
+        else return radii.z;
+    } else {
+        if (coord.y <= 0.0) return radii.x;
+        else return radii.w;
+    }
+}
+
+float sdRoundedRect(float2 coord, float2 halfSize, float radius) {
+    float2 cornerCoord = abs(coord) - (halfSize - float2(radius));
+    float outside = length(max(cornerCoord, 0.0)) - radius;
+    float inside = min(max(cornerCoord.x, cornerCoord.y), 0.0);
+    return outside + inside;
+}
+
+float safeSign(float value) {
+    return value < 0.0 ? -1.0 : 1.0;
+}
+
+float2 safeNormalize(float2 value, float2 fallback) {
+    float len = length(value);
+    if (len > 0.001) {
+        return value / len;
+    }
+    return fallback;
+}
+
+float2 gradSdRoundedRect(float2 coord, float2 halfSize, float radius) {
+    float2 cornerCoord = abs(coord) - (halfSize - float2(radius));
+    if (cornerCoord.x >= 0.0 || cornerCoord.y >= 0.0) {
+        float2 outside = max(cornerCoord, 0.0);
+        float outsideLength = length(outside);
+        if (outsideLength > 0.001) {
+            return sign(coord) * (outside / outsideLength);
+        }
+        float useX = step(cornerCoord.y, cornerCoord.x);
+        return float2(
+            useX * safeSign(coord.x),
+            (1.0 - useX) * safeSign(coord.y)
+        );
+    } else {
+        float gradX = step(cornerCoord.y, cornerCoord.x);
+        return sign(coord) * float2(gradX, 1.0 - gradX);
+    }
+}
+
+float circleMap(float x) {
+    return 1.0 - sqrt(1.0 - x * x);
+}
+
+half4 saturateColor(half4 color, float amount) {
+    half3 lin = toLinearSrgb(color.rgb);
+    float y = dot(lin, rgbToY);
+    half3 gray = half3(y);
+    half3 sat = fromLinearSrgb(mix(gray, lin, amount));
+    return half4(sat, color.a);
+}
+
+half4 illuminateGlass(half4 color, float sd, float2 normal, float2 coord) {
+    float depth = max(-sd, 0.0) / pixelDensity;
+    float2 light = safeNormalize(lightPosition - coord, float2(-0.5, -0.8));
+    float facing = dot(normal, light);
+    float rim = exp(-depth / 0.72);
+    float innerRim = exp(-pow((depth - 2.3) / 1.25, 2.0));
+    float shoulder = exp(-pow((depth - 3.5) / 1.8, 2.0));
+    float reflection = rim * (0.24 + 0.62 * pow(max(facing, 0.0), 2.0))
+        + innerRim * 0.13 * pow(max(-facing, 0.0), 3.0);
+    color.rgb *= 1.0 - shoulder * (0.045 + 0.04 * max(-facing, 0.0));
+    color.rgb = mix(color.rgb, half3(1.0), clamp(reflection, 0.0, 0.9));
+    return color;
+}
+
+half4 main(float2 coord) {
+    float2 halfSize = size * 0.5;
+    float2 centeredCoord = (coord + offset) - halfSize;
+    float radius = radiusAt(centeredCoord, cornerRadii);
+
+    float sd = sdRoundedRect(centeredCoord, halfSize, radius);
+    float interior = smoothstep(2.0 * pixelDensity, 16.0 * pixelDensity, max(-sd, 0.0));
+    float sampleRadius = mix(blurRadius, interiorBlurRadius, interior);
+    if (-sd >= refractionHeight) {
+        half4 baseColor = sampleBackdrop(coord, sampleRadius);
+
+        baseColor = saturateColor(baseColor, chromaMultiplier);
+        float3 target = (whitePoint > 0.0) ? float3(1.0) : float3(0.0);
+        baseColor.rgb = mix(baseColor.rgb, target, abs(whitePoint));
+        baseColor.rgb = (baseColor.rgb - 0.5) * (1.0 + contrast) + 0.5;
+
+        half3 tintedRGB = mix(baseColor.rgb, tintColor, tintAlpha);
+        return readingSurface(half4(tintedRGB, baseColor.a), regularStrength * interior);
+    }
+
+    sd = min(sd, 0.0);
+    float d = circleMap(1.0 - -sd / refractionHeight) * refractionAmount;
+    float smoothRadius = max(radius * 1.5, 30.0);
+    float gradRadius = min(smoothRadius, min(halfSize.x, halfSize.y));
+
+    float2 shapeGrad = gradSdRoundedRect(centeredCoord, halfSize, gradRadius);
+    float2 depthGrad = safeNormalize(centeredCoord, shapeGrad);
+    float2 grad = safeNormalize(shapeGrad + depthEffect * depthGrad, shapeGrad);
+
+    float2 refractedCoord = coord + d * grad;
+    float dispersionIntensity = chromaticAberration * ((centeredCoord.x * centeredCoord.y) / (halfSize.x * halfSize.y));
+    float2 dispersedCoord = d * grad * dispersionIntensity;
+
+    // Blur the whole spectrum equally; offset only the small dispersion delta.
+    half4 unshifted = boundedSample(refractedCoord);
+    half4 central = sampleBackdrop(refractedCoord, sampleRadius);
+    half4 red = boundedSample(refractedCoord + dispersedCoord);
+    half4 blue = boundedSample(refractedCoord - dispersedCoord);
+    half4 color = half4(clamp(central.r + red.r - unshifted.r, 0.0, 1.0), central.g,
+        clamp(central.b + blue.b - unshifted.b, 0.0, 1.0), central.a);
+
+    color = saturateColor(color, chromaMultiplier);
+    float3 target = (whitePoint > 0.0) ? float3(1.0) : float3(0.0);
+    color.rgb = mix(color.rgb, target, abs(whitePoint));
+    color.rgb = (color.rgb - 0.5) * (1.0 + contrast) + 0.5;
+
+    half3 tintedRGB = mix(color.rgb, tintColor, tintAlpha);
+    return illuminateGlass(readingSurface(half4(tintedRGB, color.a),
+        regularStrength * interior), sd, shapeGrad, coord);
+}

@@ -1,0 +1,178 @@
+{
+  "schemaVersion": 1,
+  "ijkplayerTag": "k0.8.8",
+  "ffmpegTag": "ff3.4--ijk0.8.7--20180103--001",
+  "ffmpegCommit": "b26eaa6d8cd0493f3bec47e3bcd40712397afbc8",
+  "sourceArchives": {
+    "ijkplayer-k0.8.8.tar.gz": "ef54cec44fc9f7f0515a48b32c1f1a80aef4e76887316dda84e7ca1d2e4c09b0",
+    "ffmpeg-ijk0.8.8.tar.gz": "58f01eaa93c91db3ed42a687f2489dcd937ecd0f443c261fb976fac30d114ad9"
+  },
+  "artifacts": [
+    {
+      "artifact": "armv7a",
+      "archiveSha256": "dcd76afad49954d5bd205ada8f661804c0c9f8e8e8f113fc931799b4df2b866a",
+      "files": [
+        {
+          "file": "app/src/main/jniLibs/armeabi-v7a/libijkplayer.so",
+          "sha256": "017747c7189841edfbe24d2f6b9b3011b40477b163b2f1e3fb7c21171cad9b40",
+          "upstreamSha256": "017747c7189841edfbe24d2f6b9b3011b40477b163b2f1e3fb7c21171cad9b40",
+          "changes": []
+        },
+        {
+          "file": "app/src/main/jniLibs/armeabi-v7a/libijkffmpeg.so",
+          "sha256": "83c65d809c6213f856c78571dd2b2ff1905cf31bfbaf0f3286523432783b2522",
+          "upstreamSha256": "090423693971a7184b777526ac6deb4348214b35a8ac22b158c7d80632540b1b",
+          "changes": [
+            {
+              "offset": 2356930,
+              "before": 51,
+              "after": 50
+            },
+            {
+              "offset": 2356931,
+              "before": 102,
+              "after": 0
+            },
+            {
+              "offset": 2844360,
+              "before": 1,
+              "after": 0
+            }
+          ]
+        },
+        {
+          "file": "app/src/main/jniLibs/armeabi-v7a/libijksdl.so",
+          "sha256": "b823e5adeb569add8abc633f1044c37e74491b605694354ca56c0bab617689e6",
+          "upstreamSha256": "b823e5adeb569add8abc633f1044c37e74491b605694354ca56c0bab617689e6",
+          "changes": []
+        }
+      ]
+    },
+    {
+      "artifact": "arm64",
+      "archiveSha256": "12d5324160415afd678e901cf9cbfb28c2be5ff2918f9e576f40b8d7c1ac9841",
+      "files": [
+        {
+          "file": "app/src/main/jniLibs/arm64-v8a/libijkplayer.so",
+          "sha256": "432468ce4b7d45a4b9e0693cc1b702d0ed02fe2c04bd06506a72c4dd09aa9d36",
+          "upstreamSha256": "432468ce4b7d45a4b9e0693cc1b702d0ed02fe2c04bd06506a72c4dd09aa9d36",
+          "changes": []
+        },
+        {
+          "file": "app/src/main/jniLibs/arm64-v8a/libijkffmpeg.so",
+          "sha256": "f5df77b11be33dbe9a8c87bc08517e2ab9749cc549d0b088d209ea47c0ae9a98",
+          "upstreamSha256": "5ae7ab20c487e0e1f91e8495fa7cd847ab1028f754f191a08fb3fd9c0dcc8866",
+          "changes": [
+            {
+              "offset": 3140618,
+              "before": 51,
+              "after": 50
+            },
+            {
+              "offset": 3140619,
+              "before": 102,
+              "after": 0
+            },
+            {
+              "offset": 3572300,
+              "before": 1,
+              "after": 0
+            }
+          ]
+        },
+        {
+          "file": "app/src/main/jniLibs/arm64-v8a/libijksdl.so",
+          "sha256": "6c8e04ab3decab25c8c98ee014b700c3e379c07f2b38ca82b35b53475b16f928",
+          "upstreamSha256": "6c8e04ab3decab25c8c98ee014b700c3e379c07f2b38ca82b35b53475b16f928",
+          "changes": []
+        }
+      ]
+    },
+    {
+      "artifact": "x86",
+      "archiveSha256": "1a23aa9da7b8e51877abb26538dcaa487bb1c2d5be8b15da71a4b9a6f39ce50a",
+      "files": [
+        {
+          "file": "app/src/main/jniLibs/x86/libijkplayer.so",
+          "sha256": "4ce769b349f50630109186e0252a38c919e61d69dbe571dc96a1b58e1bedab50",
+          "upstreamSha256": "4ce769b349f50630109186e0252a38c919e61d69dbe571dc96a1b58e1bedab50",
+          "changes": []
+        },
+        {
+          "file": "app/src/main/jniLibs/x86/libijkffmpeg.so",
+          "sha256": "385a2f9b3817da5291f2b1b75622c57f6d2d48b29149b3df6453dd9f9ff12a50",
+          "upstreamSha256": "5379f43d28b6e525bc9c1327b487c1a6bfcbd68143c7cee6d451ae1359c1d62a",
+          "changes": [
+            {
+              "offset": 2932610,
+              "before": 51,
+              "after": 50
+            },
+            {
+              "offset": 2932611,
+              "before": 102,
+              "after": 0
+            },
+            {
+              "offset": 4139116,
+              "before": 1,
+              "after": 0
+            }
+          ]
+        },
+        {
+          "file": "app/src/main/jniLibs/x86/libijksdl.so",
+          "sha256": "f8fed9ae1ec57469739fb88c13d49c3c1d04b7e5aa001a801781448a512d602e",
+          "upstreamSha256": "f8fed9ae1ec57469739fb88c13d49c3c1d04b7e5aa001a801781448a512d602e",
+          "changes": []
+        }
+      ]
+    },
+    {
+      "artifact": "x86_64",
+      "archiveSha256": "ef93518f7bf943a562ba01dd41163f19e03acec8e71ecce07213b9f49d7a255d",
+      "files": [
+        {
+          "file": "app/src/main/jniLibs/x86_64/libijkplayer.so",
+          "sha256": "d25dfc8f6b3a053fc3f3a21396364b004e09e97ee892f080d235375fde7b58a1",
+          "upstreamSha256": "d25dfc8f6b3a053fc3f3a21396364b004e09e97ee892f080d235375fde7b58a1",
+          "changes": []
+        },
+        {
+          "file": "app/src/main/jniLibs/x86_64/libijkffmpeg.so",
+          "sha256": "b3e866698210a907751810afa7f14900c65cdb88c52e1b56f3d23a9b3c86a74f",
+          "upstreamSha256": "c988a3a8f1aefda0c29027a287e923ab28b6cf21a0255c6d2630791cd5f936f6",
+          "changes": [
+            {
+              "offset": 4378843,
+              "before": 51,
+              "after": 50
+            },
+            {
+              "offset": 4378844,
+              "before": 102,
+              "after": 0
+            },
+            {
+              "offset": 5555476,
+              "before": 1,
+              "after": 0
+            }
+          ]
+        },
+        {
+          "file": "app/src/main/jniLibs/x86_64/libijksdl.so",
+          "sha256": "b0c2ae37e364aac49bbeca1d6a19ffaedf705552a6d0210a61f7c3d2afc5a9ef",
+          "upstreamSha256": "b0c2ae37e364aac49bbeca1d6a19ffaedf705552a6d0210a61f7c3d2afc5a9ef",
+          "changes": []
+        }
+      ]
+    }
+  ],
+  "jniLibraries": {
+    "arm64-v8a": "3d791d3900830fc11e737e31803d5b2cc82e8b4fb78d8eb466c721eeb47c7567",
+    "armeabi-v7a": "8aabb46d1d7b73ec8e14d2ec2957c9f2c4c0dce7e3c204b61566fec69a895146",
+    "x86": "eb623b155aa1c150854eaab8540adbcfd0e387907d42fa300e0938461062cc39",
+    "x86_64": "1836280d69872676d36da27632658dd6a9d27131c2b14e12b9a6518bf29103b9"
+  }
+}

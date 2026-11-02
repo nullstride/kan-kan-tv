@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:orientation="vertical" android:paddingTop="12dp">
+    <TextView style="@style/Widget.BjUnicomIptv.PhoneSettingsLabel" android:text="网络与节目源" />
+    <TextView android:id="@+id/tv_network_check_source" style="@style/Widget.BjUnicomIptv.PhoneSettingsHint" />
+    <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_check_network_sources"
+        style="@style/Widget.BjUnicomIptv.PhoneSettingsAction" android:layout_marginTop="4dp"
+        android:background="@drawable/bg_settings_row" android:textColor="@color/settings_control_text" android:text="检测节目源" />
+    <TextView style="@style/Widget.BjUnicomIptv.PhoneSettingsHint"
+        android:text="抽查当前选择与三网频道；修改仅用于检测，保存并应用后才会切换。" />
+</LinearLayout>

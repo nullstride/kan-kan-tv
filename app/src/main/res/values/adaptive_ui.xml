@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="phone_scan_fields" type="id" />
+    <item name="phone_scan_mode" type="id" />
+    <item name="btn_phone_settings_back" type="id" />
+    <item name="btn_numpad_clear" type="id" />
+    <item name="btn_phone_more" type="id" />
+    <item name="btn_numpad_close" type="id" />
+    <item name="btn_scan_parameters" type="id" />
+    <item name="btn_scan_results" type="id" />
+    <item name="btn_scan_result_actions" type="id" />
+    <dimen name="phone_drawer_width">292dp</dimen>
+    <style name="Widget.BjUnicomIptv.PhoneButton" parent="Widget.BjUnicomIptv.HudButton">
+        <item name="android:minWidth">44dp</item>
+        <item name="android:minHeight">44dp</item>
+        <item name="android:paddingHorizontal">12dp</item>
+        <item name="android:paddingVertical">0dp</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.PhoneIconButton" parent="Widget.BjUnicomIptv.PhoneButton">
+        <item name="android:paddingHorizontal">10dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:drawablePadding">0dp</item>
+    </style>
+    <dimen name="phone_panel_margin">10dp</dimen>
+    <dimen name="phone_panel_padding">8dp</dimen>
+    <string name="phone_more">更多</string>
+    <string name="phone_available">可用</string>
+    <string name="scan_parameters">扫描参数</string>
+    <string name="scan_results">结果与日志</string>
+    <string name="scan_result_actions">结果操作</string>
+</resources>

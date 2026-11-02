@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/bg_settings_surface" android:clipToOutline="true"
+    android:orientation="vertical">
+
+    <LinearLayout android:id="@+id/settings_header"
+        android:layout_width="match_parent" android:layout_height="76dp"
+        android:background="@drawable/bg_settings_toolbar" android:gravity="center_vertical"
+        android:orientation="horizontal" android:paddingHorizontal="24dp">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginEnd="18dp" android:text="看看电视"
+            android:textColor="@color/settings_secondary_label" android:textSize="13sp" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium" android:text="设置"
+            android:textColor="@color/settings_label" android:textSize="16sp" />
+        <TextView android:id="@+id/tv_phone_settings_status"
+            android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+            android:gravity="end" android:text="全部已保存"
+            android:textColor="@color/settings_secondary_label" android:textSize="13sp" />
+    </LinearLayout>
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+        android:background="@color/settings_separator" />
+
+    <LinearLayout android:id="@+id/settings_body"
+        android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:baselineAligned="false" android:orientation="horizontal">
+        <LinearLayout android:id="@+id/settings_categories"
+            android:layout_width="@dimen/settings_sidebar_width" android:layout_height="match_parent"
+            android:background="@color/settings_sidebar" android:orientation="vertical"
+            android:paddingHorizontal="12dp" android:paddingTop="20dp">
+            <androidx.appcompat.widget.AppCompatButton android:id="@+id/settings_tab_network"
+                style="@style/Widget.BjUnicomIptv.SettingsCategory" android:text="网络连接" />
+            <androidx.appcompat.widget.AppCompatButton android:id="@+id/settings_tab_playback"
+                style="@style/Widget.BjUnicomIptv.SettingsCategory" android:text="播放设置" />
+            <androidx.appcompat.widget.AppCompatButton android:id="@+id/settings_tab_channels"
+                style="@style/Widget.BjUnicomIptv.SettingsCategory" android:text="频道管理" />
+        </LinearLayout>
+        <View android:id="@+id/settings_category_divider" android:layout_width="1dp"
+            android:layout_height="match_parent" android:background="@color/settings_separator" />
+
+        <FrameLayout android:id="@+id/settings_content"
+            android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1">
+
+            <ScrollView android:id="@+id/settings_panel_network"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:clipToPadding="false" android:fillViewport="true"
+                android:padding="26dp" android:visibility="visible">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView style="@style/Widget.BjUnicomIptv.SettingsLabel" android:text="网络连接" />
+                    <TextView style="@style/Widget.BjUnicomIptv.SettingsHint"
+                        android:layout_marginBottom="20dp" android:text="检测当前配置，修改后统一应用" />
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:background="@drawable/bg_settings_group" android:clipToOutline="true"
+                        android:orientation="vertical">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="64dp"
+                            android:gravity="center_vertical" android:orientation="horizontal"
+                            android:paddingHorizontal="18dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="节目源"
+                                android:textColor="@color/settings_label" android:textSize="16sp" />
+                            <TextView android:id="@+id/tv_network_source_value"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:gravity="end" android:text="尚未选择节目源"
+                                android:textColor="@color/settings_secondary_label" android:textSize="16sp" />
+                        </LinearLayout>
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/settings_separator" />
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="64dp"
+                            android:gravity="center_vertical" android:orientation="horizontal"
+                            android:paddingHorizontal="18dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="连接方式"
+                                android:textColor="@color/settings_label" android:textSize="16sp" />
+                            <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_stream_mode"
+                                style="@style/Widget.BjUnicomIptv.SettingsValueButton" android:text="路由器代理" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp" android:gravity="center_vertical"
+                        android:orientation="horizontal">
+                        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_check_network_sources"
+                            style="@style/Widget.BjUnicomIptv.SettingsCheckButton" android:text="检测节目源" />
+                        <TextView android:id="@+id/tv_network_check_source"
+                            android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_marginStart="12dp" android:layout_weight="1"
+                            android:text="按当前设置抽查，不会自动保存"
+                            android:textColor="@color/settings_secondary_label" android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_network_advanced"
+                        android:layout_width="wrap_content" android:layout_height="48dp"
+                        android:background="@android:color/transparent" android:gravity="center_vertical|start"
+                        android:minHeight="0dp" android:minWidth="0dp" android:padding="0dp"
+                        android:text="IPTV 连接设置（高级）" android:textAllCaps="false"
+                        android:textColor="@color/settings_link" android:textSize="16sp" />
+
+                    <LinearLayout android:id="@+id/network_advanced_section"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:visibility="gone">
+                        <RadioGroup android:id="@+id/rg_stream_mode"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:visibility="visible">
+                            <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/rb_stream_udpxy"
+                                style="@style/Widget.BjUnicomIptv.SettingsChoice" android:text="路由器代理 · udpxy" />
+                            <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/rb_stream_local_proxy"
+                                style="@style/Widget.BjUnicomIptv.SettingsChoice" android:text="内置代理 · 本机组播转 HTTP" />
+                            <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/rb_stream_direct_rtp"
+                                style="@style/Widget.BjUnicomIptv.SettingsChoice" android:text="组播直连 · RTP / IGMP" />
+                        </RadioGroup>
+                        <LinearLayout android:id="@+id/proxy_address_group"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="vertical">
+                            <EditText android:id="@+id/et_settings_udpxy"
+                                android:layout_width="match_parent" android:layout_height="48dp"
+                                android:background="@drawable/bg_settings_input" android:fontFamily="monospace"
+                                android:hint="192.168.2.1:8012" android:imeOptions="actionDone"
+                                android:inputType="textUri" android:paddingHorizontal="10dp"
+                                android:singleLine="true" android:textColor="@color/settings_label"
+                                android:textColorHint="@color/settings_secondary_label" android:textSize="16sp" />
+                        </LinearLayout>
+                        <TextView android:id="@+id/tv_stream_mode_hint"
+                            style="@style/Widget.BjUnicomIptv.SettingsHint" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView android:id="@+id/settings_panel_playback"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:clipToPadding="false" android:fillViewport="true"
+                android:padding="26dp" android:visibility="gone">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView style="@style/Widget.BjUnicomIptv.SettingsLabel" android:text="播放设置" />
+                    <TextView style="@style/Widget.BjUnicomIptv.SettingsHint"
+                        android:layout_marginBottom="20dp" android:text="画面、解码与声音" />
+                    <LinearLayout android:id="@+id/ijk_decode_options"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:background="@drawable/bg_settings_group" android:clipToOutline="true"
+                        android:orientation="vertical">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="64dp"
+                            android:gravity="center_vertical" android:orientation="horizontal"
+                            android:paddingHorizontal="18dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="播放内核"
+                                android:textColor="@color/settings_label" android:textSize="16sp" />
+                            <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_player_core"
+                                style="@style/Widget.BjUnicomIptv.SettingsValueButton" android:text="IjkMediaPlayer" />
+                        </LinearLayout>
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/settings_separator" />
+                        <androidx.appcompat.widget.SwitchCompat android:id="@+id/cb_settings_mediacodec"
+                            style="@style/Widget.BjUnicomIptv.SettingsCheck" android:text="H.264 硬件解码" />
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/settings_separator" />
+                        <androidx.appcompat.widget.SwitchCompat android:id="@+id/cb_settings_hevc"
+                            style="@style/Widget.BjUnicomIptv.SettingsCheck" android:text="HEVC / H.265 解码" />
+                    </LinearLayout>
+                    <TextView style="@style/Widget.BjUnicomIptv.SettingsHint"
+                        android:layout_marginTop="12dp" android:text="更改仅暂存，保存并应用后生效。" />
+                    <RadioGroup android:id="@+id/rg_player_core"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:visibility="gone">
+                        <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/rb_core_ijk"
+                            style="@style/Widget.BjUnicomIptv.SettingsChoice" android:text="IjkMediaPlayer · 默认" />
+                        <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/rb_core_exo"
+                            style="@style/Widget.BjUnicomIptv.SettingsChoice" android:text="UTVPlayer · 基于 ExoPlayer" />
+                        <androidx.appcompat.widget.AppCompatRadioButton android:id="@+id/rb_core_android"
+                            style="@style/Widget.BjUnicomIptv.SettingsChoice" android:text="AndroidMediaPlayer" />
+                    </RadioGroup>
+                    <TextView android:id="@+id/tv_decoder_options_hint"
+                        style="@style/Widget.BjUnicomIptv.SettingsHint" android:visibility="gone" />
+                    <androidx.appcompat.widget.SwitchCompat android:id="@+id/cb_settings_opensles"
+                        style="@style/Widget.BjUnicomIptv.SettingsCheck"
+                        android:text="OpenSL ES 音频输出" android:visibility="gone" />
+                    <androidx.appcompat.widget.SwitchCompat android:id="@+id/cb_settings_textureview"
+                        style="@style/Widget.BjUnicomIptv.SettingsCheck"
+                        android:text="使用 TextureView 渲染" android:visibility="gone" />
+                </LinearLayout>
+            </ScrollView>
+
+            <ScrollView android:id="@+id/settings_panel_channels"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:clipToPadding="false" android:fillViewport="true"
+                android:padding="26dp" android:visibility="gone">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView style="@style/Widget.BjUnicomIptv.SettingsLabel" android:text="频道管理" />
+                    <TextView style="@style/Widget.BjUnicomIptv.SettingsHint"
+                        android:layout_marginBottom="20dp" android:text="节目来源与频道范围" />
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:background="@drawable/bg_settings_group" android:clipToOutline="true"
+                        android:orientation="vertical">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="64dp"
+                            android:gravity="center_vertical" android:orientation="horizontal"
+                            android:paddingHorizontal="18dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="节目源"
+                                android:textColor="@color/settings_label" android:textSize="16sp" />
+                            <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_source"
+                                style="@style/Widget.BjUnicomIptv.SettingsValueButton"
+                                android:maxWidth="320dp" android:text="请选择节目源  ›" />
+                        </LinearLayout>
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/settings_separator" />
+                        <androidx.appcompat.widget.SwitchCompat android:id="@+id/cb_settings_all_channels"
+                            style="@style/Widget.BjUnicomIptv.SettingsCheck"
+                            android:text="包含标清及历史频道" />
+                    </LinearLayout>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:layout_marginTop="12dp"
+                        android:text="节目数量不代表可播放数量。修改后请重新检测。"
+                        android:textColor="@color/settings_secondary_label" android:textSize="14sp" />
+                    <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_licenses"
+                        style="@style/Widget.BjUnicomIptv.SettingsAction"
+                        android:layout_marginTop="12dp" android:text="开源许可" />
+                    <TextView android:id="@+id/tv_settings_source_summary"
+                        style="@style/Widget.BjUnicomIptv.SettingsHint" android:visibility="gone" />
+                    <TextView android:id="@+id/tv_settings_channel_range_hint"
+                        style="@style/Widget.BjUnicomIptv.SettingsHint" android:visibility="gone" />
+                    <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_import_m3u"
+                        style="@style/Widget.BjUnicomIptv.SettingsAction"
+                        android:text="导入 M3U" android:visibility="gone" />
+                    <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_scan"
+                        style="@style/Widget.BjUnicomIptv.SettingsAction"
+                        android:text="扫描频道" android:visibility="gone" />
+                    <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_export"
+                        style="@style/Widget.BjUnicomIptv.SettingsAction"
+                        android:text="导出当前频道列表" android:visibility="gone" />
+                </LinearLayout>
+            </ScrollView>
+        </FrameLayout>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+        android:background="@color/settings_separator" />
+    <LinearLayout android:id="@+id/settings_footer"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:background="@drawable/bg_settings_toolbar" android:gravity="center_vertical|end"
+        android:orientation="horizontal" android:paddingHorizontal="24dp" android:paddingVertical="16dp">
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="修改后统一应用"
+            android:textColor="@color/settings_secondary_label" android:textSize="13sp" />
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_cancel"
+            style="@style/Widget.BjUnicomIptv.SettingsSecondaryButton" android:text="取消" />
+        <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_settings_save"
+            style="@style/Widget.BjUnicomIptv.PrimaryButton"
+            android:layout_width="142dp" android:layout_height="48dp" android:layout_marginStart="12dp"
+            android:background="@drawable/bg_settings_save" android:minHeight="0dp" android:minWidth="0dp"
+            android:text="保存并应用" android:textColor="@color/settings_save_text" android:textSize="16sp" />
+    </LinearLayout>
+</LinearLayout>

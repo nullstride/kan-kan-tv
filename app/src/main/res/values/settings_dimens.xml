@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="settings_title_text_size">24sp</dimen>
+    <dimen name="settings_label_text_size">24sp</dimen>
+    <dimen name="settings_hint_text_size">14sp</dimen>
+    <dimen name="settings_item_text_size">16sp</dimen>
+    <dimen name="settings_category_text_size">16sp</dimen>
+    <dimen name="settings_row_min_height">64dp</dimen>
+    <dimen name="settings_category_height">48dp</dimen>
+    <dimen name="settings_sidebar_width">170dp</dimen>
+</resources>

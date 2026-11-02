@@ -1,0 +1,38 @@
+{
+  "identity": {
+    "name": "nullstride",
+    "email": "289988275+nullstride@users.noreply.github.com"
+  },
+  "allowedEmails": [
+    "ffmpeg-devel@ffmpeg.org",
+    "noreply@github.com"
+  ],
+  "allowedVendorPathPrefix": "/home/travis/build/Bilibili/ci-ijk-ffmpeg-android/",
+  "upstreamLicenseFiles": {
+    "LICENSES/LGPL-2.1-or-later.txt": "58af0d3787aec7d6f8d833535d64879156e7ec23",
+    "app/src/main/assets/licenses/LGPL-2.1-or-later.txt": "58af0d3787aec7d6f8d833535d64879156e7ec23",
+    "LICENSES/Apache-2.0.txt": "d645695673349e3947e8e5ae42332d0ac3164cd7",
+    "app/src/main/assets/licenses/Apache-2.0.txt": "d645695673349e3947e8e5ae42332d0ac3164cd7"
+  },
+  "attributionLineHashes": {
+    "app/src/main/java/com/bjunicom/iptv/player/IRenderView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/bjunicom/iptv/player/MeasureHelper.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/bjunicom/iptv/player/SurfaceRenderView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/bjunicom/iptv/player/TextureRenderView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ],
+    "app/src/main/java/com/bjunicom/iptv/player/IjkVideoView.java": [
+      "ed81a550709491a82ff8408c84e386d1f3c7c371b7bb1730aaeb207ec15d3d60"
+    ]
+  },
+  "upstreamSourceArchives": {
+    "third_party/sources/ijkplayer-k0.8.8.tar.gz": "ef54cec44fc9f7f0515a48b32c1f1a80aef4e76887316dda84e7ca1d2e4c09b0",
+    "third_party/sources/ffmpeg-ijk0.8.8.tar.gz": "58f01eaa93c91db3ed42a687f2489dcd937ecd0f443c261fb976fac30d114ad9"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "version": "2026-10-28/v1",
+  "file": "settings-three-devices.html",
+  "sha256": "427402c73ca22e5faed902feeb9a649c9858022e719f464768ad7b3de264d4cd",
+  "bytes": 16746,
+  "source": "用户已确认的三端深色彩色示意（手机横屏）",
+  "authority": "仅视觉及局部交互参考；正式业务与验收以../README.md为准",
+  "format": "依赖预览宿主的HTML片段；非独立Android实现",
+  "limitations": [
+    "演示网络结果不是真实检测",
+    "简化保存/草稿和局部TV焦点不能替代正式契约",
+    "缺失原有功能必须按详细方案补齐",
+    "CSS像素不等于Android dp/sp"
+  ]
+}

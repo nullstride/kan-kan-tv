@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Widget.BjUnicomIptv.SettingsChoice" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/settings_row_min_height</item>
+        <item name="android:background">@drawable/bg_settings_row</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:textColor">@color/settings_control_text</item>
+        <item name="android:textSize">@dimen/settings_item_text_size</item>
+        <item name="buttonTint">@color/settings_choice_tint</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsCheck" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/settings_row_min_height</item>
+        <item name="android:background">@drawable/bg_settings_row</item>
+        <item name="android:focusable">true</item>
+        <item name="android:paddingHorizontal">18dp</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="android:textColor">@color/settings_control_text</item>
+        <item name="android:textSize">@dimen/settings_item_text_size</item>
+        <item name="thumbTint">@color/settings_switch_thumb</item>
+        <item name="trackTint">@color/settings_switch_track</item>
+        <item name="showText">false</item>
+        <item name="splitTrack">false</item>
+        <item name="switchMinWidth">48dp</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsLabel" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/settings_label_text_size</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/settings_label</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsHint" parent="">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">4dp</item>
+        <item name="android:textSize">@dimen/settings_hint_text_size</item>
+        <item name="android:textColor">@color/settings_secondary_label</item>
+        <item name="android:lineSpacingExtra">2dp</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsCategory" parent="Widget.BjUnicomIptv.HudButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/settings_category_height</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:background">@drawable/bg_settings_category</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:textColor">@color/settings_category_text</item>
+        <item name="android:textSize">@dimen/settings_category_text_size</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsAction" parent="Widget.BjUnicomIptv.SettingsCategory">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/settings_row_min_height</item>
+        <item name="android:paddingVertical">10dp</item>
+        <item name="android:background">@drawable/bg_settings_row</item>
+        <item name="android:textColor">@color/settings_control_text</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsValueButton" parent="Widget.BjUnicomIptv.HudButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingHorizontal">14dp</item>
+        <item name="android:background">@drawable/bg_settings_value_button</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/settings_control_text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsSecondaryButton" parent="Widget.BjUnicomIptv.HudButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:background">@drawable/bg_settings_secondary_button</item>
+        <item name="android:textColor">@color/settings_control_text</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+    <style name="Widget.BjUnicomIptv.SettingsCheckButton" parent="Widget.BjUnicomIptv.HudButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minWidth">156dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:background">@drawable/bg_settings_check</item>
+        <item name="android:textColor">#BCD8FF</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+</resources>

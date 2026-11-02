@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Settings-specific semantic colors. Keep these independent from the playback HUD palette. -->
+    <color name="settings_canvas">#111113</color>
+    <color name="settings_sidebar">#1B1B1E</color>
+    <color name="settings_group">#1C1C1E</color>
+    <color name="settings_raised">#2C2C2E</color>
+    <color name="settings_label">#F5F5F7</color>
+    <color name="settings_secondary_label">#B8B8C0</color>
+    <color name="settings_separator">#3B3B40</color>
+    <color name="settings_selection">#353538</color>
+    <color name="settings_link">#80B8FF</color>
+    <color name="settings_positive">#30D158</color>
+    <color name="settings_warning">#FFD60A</color>
+    <color name="settings_error">#FF6961</color>
+    <color name="settings_action">#F5F5F7</color>
+    <color name="settings_on_action">#1D1D1F</color>
+    <color name="settings_disabled_surface">#303034</color>
+    <color name="settings_disabled_text">#A0A0A8</color>
+    <color name="settings_input_surface">#151517</color>
+    <color name="settings_input_border">#505057</color>
+</resources>

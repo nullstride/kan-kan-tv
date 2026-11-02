@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:background="@drawable/bg_settings_surface" android:fillViewport="true"
+    android:paddingHorizontal="20dp" android:paddingVertical="12dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+        <TextView style="@style/Widget.BjUnicomIptv.SettingsHint" android:text="选择文件或粘贴内容，检测后返回设置，待应用；保存并应用后生效。" />
+        <Button android:id="@+id/btn_pick_m3u_file" style="@style/Widget.BjUnicomIptv.SettingsAction"
+            android:layout_marginTop="12dp" android:text="选择 M3U 文件" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+            <Button android:id="@+id/btn_scan_local_m3u_files" style="@style/Widget.BjUnicomIptv.SettingsAction"
+                android:layout_width="0dp" android:layout_weight="1" android:text="查找设备与 U 盘文件" />
+            <Button android:id="@+id/btn_load_sample_m3u" style="@style/Widget.BjUnicomIptv.SettingsAction"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_marginStart="8dp" android:text="已存内容 / 示例" />
+        </LinearLayout>
+        <TextView android:id="@+id/tv_custom_m3u_filename" style="@style/Widget.BjUnicomIptv.SettingsHint" android:text="未选择文件 · 可直接粘贴内容" />
+        <EditText android:id="@+id/et_custom_m3u_content" android:layout_width="match_parent" android:layout_height="140dp"
+            android:layout_marginTop="8dp" android:background="@drawable/bg_settings_input"
+            android:fontFamily="monospace" android:gravity="top|start" android:hint="在此粘贴 M3U 内容，也可输入本地文件路径"
+            android:inputType="textMultiLine|textNoSuggestions" android:padding="12dp" android:scrollbars="vertical"
+            android:textColor="@color/text_primary" android:textColorHint="@color/text_muted" android:textSize="13sp"
+            android:nextFocusUp="@id/btn_scan_local_m3u_files" android:nextFocusDown="@id/btn_inspect_m3u_content" />
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="12dp">
+            <Button android:id="@+id/btn_inspect_m3u_content" style="@style/Widget.BjUnicomIptv.SettingsAction"
+                android:layout_width="0dp" android:layout_weight="1" android:text="检查列表" />
+            <Button android:id="@+id/btn_probe_m3u_streams" style="@style/Widget.BjUnicomIptv.SettingsAction"
+                android:layout_width="0dp" android:layout_weight="1" android:layout_marginStart="8dp" android:text="检查频道连接" />
+        </LinearLayout>
+        <ProgressBar android:id="@+id/pb_custom_m3u_probe" style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent" android:layout_height="6dp" android:max="100" android:visibility="gone" />
+        <TextView android:id="@+id/tv_custom_m3u_report" style="@style/Widget.BjUnicomIptv.SettingsHint"
+            android:paddingVertical="8dp" android:text="内容检测检查格式与频道条目；能否播放仍取决于网络和流服务。" />
+    </LinearLayout>
+</ScrollView>

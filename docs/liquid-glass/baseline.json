@@ -1,0 +1,531 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-26",
+  "timezone": "Asia/Shanghai",
+  "head": "f73318f7f1e71b639557b418291bf9bf174206d3",
+  "description": "Current working-tree fingerprints, including pre-existing UI and settings changes. This is not a source backup, build proof, or successful test record.",
+  "scope": "App sources/resources/tests and present Gradle configuration; excludes local.properties, keystores and credentials.",
+  "files": [
+    {
+      "path": "app/build.gradle",
+      "bytes": 2577,
+      "sha256": "d6776afe0f51dcfbb5e16842631a104b6aa5ae978f19696c70bdd364d94eeda5"
+    },
+    {
+      "path": "app/src/main/AndroidManifest.xml",
+      "bytes": 2766,
+      "sha256": "d0523c35d0822ecde3074b2dc44791aed168d3169bd4001e76c8b995e3256e35"
+    },
+    {
+      "path": "app/src/main/assets/bj-unicom-iptv-all.m3u",
+      "bytes": 35470,
+      "sha256": "3973ebb4bca550406850b3af3747d8a9df24789bc1f6966067448d4357def1c6"
+    },
+    {
+      "path": "app/src/main/assets/bj-unicom-iptv.m3u",
+      "bytes": 26314,
+      "sha256": "e87a148a31dcd81a49a99f8c736e86047b34e6d404c3ae47c336c16f5771883e"
+    },
+    {
+      "path": "app/src/main/assets/check_iptv_m3u.sh",
+      "bytes": 24026,
+      "sha256": "5e849b56ac93906d282ede87ce9911b029ef22cd04761ad2b1ed3bb4f3b93334"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/IptvApplication.java",
+      "bytes": 3719,
+      "sha256": "a2c30974d89926e506eb48beef076b6f27238444697ec232444adde9e41e6c6f"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/config/IptvSettings.java",
+      "bytes": 7044,
+      "sha256": "33d934373a3de99a5d42fb052319406856544c5ffabb3d4c048360eec8237326"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/model/IptvChannel.java",
+      "bytes": 8881,
+      "sha256": "a2b79b758a7c6c4022a07ee0d3fc99b627df725a51d1cc3107b093129d50574a"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/network/LocalMulticastProxyServer.java",
+      "bytes": 13901,
+      "sha256": "bf24cdd951fad30aa32d99319c2a681887873874134c6d215789c979eb5f4ca7"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/network/StreamUrlResolver.java",
+      "bytes": 2534,
+      "sha256": "484810532f9b2d2b4d20f2050d49de5cb9e7a4eef7591e4d94425ca814278bca"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/parser/M3uParser.java",
+      "bytes": 9579,
+      "sha256": "53096cb35c76fb8890bbbc65c514807c36857e9703b6e8cecf53c3e5c5a528e6"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/CodecDecoderPool.java",
+      "bytes": 21839,
+      "sha256": "7413ba164979f7f203b684a70425d4912693326bf1fea122debaf55224fb3114"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/IRenderView.java",
+      "bytes": 1686,
+      "sha256": "58cb39855635495e594987e2700a9d87a5fe638e73fd2ab494c7b574351eaf79"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/IjkVideoView.java",
+      "bytes": 39965,
+      "sha256": "edb9c1439be1f5a0c7a8c5b3ff251de803ea458c3c655e0f8a88354f313404f3"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/MeasureHelper.java",
+      "bytes": 8484,
+      "sha256": "29dbe05656a2a851a2851d7c300edc306cb884fbd021bd21775c80b754df5f0d"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/StreamDownloaderPool.java",
+      "bytes": 43194,
+      "sha256": "968e659e253a20c332ead8fc944e78c40b2c4350d7a9d2d7235cabbe34b31538"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/SurfaceRenderView.java",
+      "bytes": 7674,
+      "sha256": "6e82e948ce380f6efdcbd6c6431f164dd63c67c45150ef9aa520f432b65ebed6"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/TextureRenderView.java",
+      "bytes": 10104,
+      "sha256": "fec43091c4224d9a05d7ff852363a635572bb07800abaa061c588105604682d2"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/TsCodecDescriptor.java",
+      "bytes": 4056,
+      "sha256": "66062603e31c8bb9e1aea04822f49e2e4dbe663f71a8bc939b19433bdf8c7ca5"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/player/TsHardwareAudioCompanion.java",
+      "bytes": 23083,
+      "sha256": "f6eaad09ff01d60311b686bd5890a759262b61b9658db60cd0a5358e04a697ab"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/repository/ChannelRepository.java",
+      "bytes": 13856,
+      "sha256": "141b5679a6c4096dd453ac5e00f23c7c9b6f8e634389001ac02a8084669a19ae"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/scanner/MulticastScannerEngine.java",
+      "bytes": 32612,
+      "sha256": "e0c77f73233c2c4f1935a8f1892f556ea8ae3557d4e208c7d85f73bbe5c7cb2d"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/scanner/ScanStatistics.java",
+      "bytes": 1366,
+      "sha256": "24f9363dc0ce8deb2010c2b541b6392a1079796665157cb9970d6d7426336aeb"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/MainActivity.java",
+      "bytes": 69627,
+      "sha256": "04d6315240d6ad7cef33b48a0bec54ad1c5ea321f7b5fdd56c1cc9d195ddab69"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/ScannerActivity.java",
+      "bytes": 12828,
+      "sha256": "38e04a779d4ebe5df2d4c3b95fd56379698289c64b3675ce3837c7bc8299b722"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/VideoGlass.java",
+      "bytes": 9020,
+      "sha256": "ec14fddc3b0d3bcb50f9140ae107e9eacc19747c6132a95def61e486db184d58"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/adapter/CategoryAdapter.java",
+      "bytes": 6627,
+      "sha256": "7907a1cb327a9de8de511dc43e60e56ec4801ce31c6c22e87244afb3fc305a42"
+    },
+    {
+      "path": "app/src/main/java/com/bjunicom/iptv/ui/adapter/ChannelAdapter.java",
+      "bytes": 10211,
+      "sha256": "37c02d01b681ace5037c6802a638b84b57c4dc7255b44774f3b0fe0fb8328e05"
+    },
+    {
+      "path": "app/src/main/jniLibs/arm64-v8a/libijkffmpeg.so",
+      "bytes": 3581144,
+      "sha256": "f5df77b11be33dbe9a8c87bc08517e2ab9749cc549d0b088d209ea47c0ae9a98"
+    },
+    {
+      "path": "app/src/main/jniLibs/arm64-v8a/libijkplayer.so",
+      "bytes": 381024,
+      "sha256": "432468ce4b7d45a4b9e0693cc1b702d0ed02fe2c04bd06506a72c4dd09aa9d36"
+    },
+    {
+      "path": "app/src/main/jniLibs/arm64-v8a/libijksdl.so",
+      "bytes": 481112,
+      "sha256": "6c8e04ab3decab25c8c98ee014b700c3e379c07f2b38ca82b35b53475b16f928"
+    },
+    {
+      "path": "app/src/main/jniLibs/armeabi-v7a/libijkffmpeg.so",
+      "bytes": 2849520,
+      "sha256": "83c65d809c6213f856c78571dd2b2ff1905cf31bfbaf0f3286523432783b2522"
+    },
+    {
+      "path": "app/src/main/jniLibs/armeabi-v7a/libijkplayer.so",
+      "bytes": 248404,
+      "sha256": "017747c7189841edfbe24d2f6b9b3011b40477b163b2f1e3fb7c21171cad9b40"
+    },
+    {
+      "path": "app/src/main/jniLibs/armeabi-v7a/libijksdl.so",
+      "bytes": 214528,
+      "sha256": "b823e5adeb569add8abc633f1044c37e74491b605694354ca56c0bab617689e6"
+    },
+    {
+      "path": "app/src/main/jniLibs/x86/libijkffmpeg.so",
+      "bytes": 4144756,
+      "sha256": "385a2f9b3817da5291f2b1b75622c57f6d2d48b29149b3df6453dd9f9ff12a50"
+    },
+    {
+      "path": "app/src/main/jniLibs/x86/libijkplayer.so",
+      "bytes": 404348,
+      "sha256": "4ce769b349f50630109186e0252a38c919e61d69dbe571dc96a1b58e1bedab50"
+    },
+    {
+      "path": "app/src/main/jniLibs/x86/libijksdl.so",
+      "bytes": 617084,
+      "sha256": "f8fed9ae1ec57469739fb88c13d49c3c1d04b7e5aa001a801781448a512d602e"
+    },
+    {
+      "path": "app/src/main/jniLibs/x86_64/libijkffmpeg.so",
+      "bytes": 5565552,
+      "sha256": "b3e866698210a907751810afa7f14900c65cdb88c52e1b56f3d23a9b3c86a74f"
+    },
+    {
+      "path": "app/src/main/jniLibs/x86_64/libijkplayer.so",
+      "bytes": 410280,
+      "sha256": "d25dfc8f6b3a053fc3f3a21396364b004e09e97ee892f080d235375fde7b58a1"
+    },
+    {
+      "path": "app/src/main/jniLibs/x86_64/libijksdl.so",
+      "bytes": 560416,
+      "sha256": "b0c2ae37e364aac49bbeca1d6a19ffaedf705552a6d0210a61f7c3d2afc5a9ef"
+    },
+    {
+      "path": "app/src/main/res/color/control_text.xml",
+      "bytes": 332,
+      "sha256": "a345b98adc08f7e6d81e5093c1ed4ad410a75a0bc986152dbd10e10335f6df59"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/ic_tv_banner.png",
+      "bytes": 10247,
+      "sha256": "6e697db3eae54133d3e25ded38e5ac8a2489dda35303412fac815e612c370be0"
+    },
+    {
+      "path": "app/src/main/res/drawable-nodpi/preview_landscape.jpg",
+      "bytes": 541597,
+      "sha256": "3811a8299c2204f2d354ec126a2dcb6e9fb61c8ff6ae8b19ccddef7995eab452"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_badge.xml",
+      "bytes": 401,
+      "sha256": "15a0ce6beb7534e8950f1c7fbed75f19556ad63f190a6d9e5643be4541177132"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_channel_item.xml",
+      "bytes": 1125,
+      "sha256": "8bd43648d4721e1d6fc4c2f848c5b51f3cd14e29045b9b4d9c79f15e2373fc33"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_channel_num_pill.xml",
+      "bytes": 179,
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_group_tab.xml",
+      "bytes": 1441,
+      "sha256": "7bd11d65b10fcb17b6a31175d2489098e957396a31ec4b7b300273e43e130fc1"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_card_container.xml",
+      "bytes": 291,
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_dialog_surface.xml",
+      "bytes": 291,
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_drawer_sheet.xml",
+      "bytes": 291,
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_hud_surface.xml",
+      "bytes": 291,
+      "sha256": "c11bd7ac998a36ab68dd7582d06baf67a85a9ed475dc32095f58a4b9e1013d50"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_numpad_key.xml",
+      "bytes": 1441,
+      "sha256": "7bd11d65b10fcb17b6a31175d2489098e957396a31ec4b7b300273e43e130fc1"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_primary_button.xml",
+      "bytes": 1441,
+      "sha256": "7bd11d65b10fcb17b6a31175d2489098e957396a31ec4b7b300273e43e130fc1"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_md3_search_bar.xml",
+      "bytes": 612,
+      "sha256": "121ca3dc826bb65c546c5f453a0961f5b84291bbea3b38a6e10a291eb96d7879"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_res_badge_4k.xml",
+      "bytes": 179,
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_res_badge_hd.xml",
+      "bytes": 179,
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_res_badge_sd.xml",
+      "bytes": 179,
+      "sha256": "e8f42f036206bffa8a3504479e4f8fe81746028c415274aa6f5a5103cf3ae3a7"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_category.xml",
+      "bytes": 683,
+      "sha256": "d23c0195cea9d8957c6fc28d90d916294883c935f80f492531355baf7335b7d2"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_input.xml",
+      "bytes": 572,
+      "sha256": "5999f29df2353074871f48859e1874f19168e8d12edd6ba6995dc8aeab55b14c"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_row.xml",
+      "bytes": 682,
+      "sha256": "025e5180dfb8fd47f2d01bcf35d1f85019526d28b68ce68c6f168d1ad9876f7d"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_save.xml",
+      "bytes": 506,
+      "sha256": "5a1ef7842ef78011c3e33322f49f0cc05232d9fe1aae5377259a103bb3d7f9da"
+    },
+    {
+      "path": "app/src/main/res/drawable/bg_settings_surface.xml",
+      "bytes": 189,
+      "sha256": "baec2e1335f9403f97a28775363e0eeaf9d61bf83f7e87815d0bf890402958a9"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_aspect_ratio.xml",
+      "bytes": 473,
+      "sha256": "28b462d701c76e84b583e596eeb726ac6d936b0e4ed3f5754e43f9c952a167c7"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_back.xml",
+      "bytes": 380,
+      "sha256": "ce58333b395dfaa8b25d6462e6d377471f9d40d6b260cb0cc4ebf0ceb59edd81"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_backspace.xml",
+      "bytes": 556,
+      "sha256": "316b59481ceb985fb3cecd91434c6e8605348416ce849f02e2c340359541e0c1"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_dialpad.xml",
+      "bytes": 459,
+      "sha256": "b6ef808735a8d1992233a8a35734a8ea0072bb102778451c118770400c4ec62e"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_export.xml",
+      "bytes": 360,
+      "sha256": "de3eb238bc538bb937db7e799ad8d9a528442acea33df3f5827f3902272196c2"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_menu.xml",
+      "bytes": 364,
+      "sha256": "225d0945eba3fe1d5f0088e88453974ae89e80411b5ecc65adef3834b4ab27fb"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_next.xml",
+      "bytes": 376,
+      "sha256": "6449427dca431925755ccc736ce2702c557a3dc19e3e535a1c64ec9f38a21d2a"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_play.xml",
+      "bytes": 332,
+      "sha256": "114fbe8505d966e28b73b690b5a87fef597c032903dd77c1726c278ca431a0f2"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_prev.xml",
+      "bytes": 377,
+      "sha256": "3fa4c533f92ef351365e48d7a23335ce3fe91302d203176ba0603d1925bb77e4"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_radar.xml",
+      "bytes": 648,
+      "sha256": "744f722c612960d6ed6e1447e384b13b85c3034b2edd5d04efccb8cf32319b7b"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_refresh.xml",
+      "bytes": 536,
+      "sha256": "8887ab1140a49d557a398f320e664d28f2c94ddbf09e0344ac73f6ffdd52b283"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_settings.xml",
+      "bytes": 438,
+      "sha256": "39341e75ffcf9e9e9e1180f06c7916d99f35acfd19b9b1705905495806c379ae"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_star_filled.xml",
+      "bytes": 409,
+      "sha256": "f773cc54df2ddfb56dcb45bbd56dd688c60eee904ac483a692ba3ce818c05bbe"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_star_outline.xml",
+      "bytes": 521,
+      "sha256": "5b40a151c8143d60e1dee64e6f2661f8087dc014bbb07a7265ed4e439d1c6d59"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_flat_stop.xml",
+      "bytes": 331,
+      "sha256": "fbc4a1919470670bd33fd4d46b991e965812d810f4ef4d48b54bee2260b22fad"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher.xml",
+      "bytes": 1643,
+      "sha256": "12cbb6f3859c6b2278e0dc37a968b05f267e470eaf06e5bb6cb20c5bf28f9572"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_launcher_foreground.xml",
+      "bytes": 1611,
+      "sha256": "6a58db480594ab0dbf43ff2c29ee67363ff43f7661c87f41684b85f5aebd51ce"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_md_live_dot.xml",
+      "bytes": 268,
+      "sha256": "e01c2b9eb7453a9cc56659f305ea460c55287f3616e48d44a5b97dbf339cc0bf"
+    },
+    {
+      "path": "app/src/main/res/drawable/ic_md_search.xml",
+      "bytes": 566,
+      "sha256": "ea4bb38da376d3789c95e1362029097e515344c63d43dd13c66fe9380a8dd393"
+    },
+    {
+      "path": "app/src/main/res/layout/activity_main.xml",
+      "bytes": 15374,
+      "sha256": "e83d56beab99e1483da28e099de1e71f064564bdfb4dfc225911a5fc2555643f"
+    },
+    {
+      "path": "app/src/main/res/layout/activity_scanner.xml",
+      "bytes": 19210,
+      "sha256": "10111719bc83e95b2a258243b684acfecd41b135d5a820b2b9512705ac3fea1c"
+    },
+    {
+      "path": "app/src/main/res/layout/dialog_player_settings.xml",
+      "bytes": 10227,
+      "sha256": "352a91d0569038e8c19e670b31994ec43f0f3dd712b3a8bb1eef225c25763b31"
+    },
+    {
+      "path": "app/src/main/res/layout/dialog_virtual_numpad.xml",
+      "bytes": 10918,
+      "sha256": "c13c81a7e091f3a7d2bc1d62e990f2d4325f4fa0546358215c5e6218df6a2409"
+    },
+    {
+      "path": "app/src/main/res/layout/item_category_tab.xml",
+      "bytes": 626,
+      "sha256": "adc0f8194e222b37a4dbccd5a689d26f3937bd04fc68602ec716709d1e5d5240"
+    },
+    {
+      "path": "app/src/main/res/layout/item_channel.xml",
+      "bytes": 4231,
+      "sha256": "cd2defb16e2c84333f9288723633d53e87c14ef70cb91f5f5b61cfe621315739"
+    },
+    {
+      "path": "app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "bytes": 244,
+      "sha256": "b0315e24af66b9f2ed72ba9de305f65e36439b48a92d2f468cca95ca2431847c"
+    },
+    {
+      "path": "app/src/main/res/mipmap-anydpi/ic_launcher.xml",
+      "bytes": 1643,
+      "sha256": "12cbb6f3859c6b2278e0dc37a968b05f267e470eaf06e5bb6cb20c5bf28f9572"
+    },
+    {
+      "path": "app/src/main/res/values/colors.xml",
+      "bytes": 2684,
+      "sha256": "75132c670ba8b81a855189d450cebf725ed646dad42e4ec620b18a5f62cdfc77"
+    },
+    {
+      "path": "app/src/main/res/values/settings_styles.xml",
+      "bytes": 2914,
+      "sha256": "9ba2e7923edb603730726b130b13acf6ff590bbae20c8376c5d8f0659f627fdc"
+    },
+    {
+      "path": "app/src/main/res/values/strings.xml",
+      "bytes": 1672,
+      "sha256": "3182ca29800dbe9c2aa492bdafeafbba9053b2d17d43ee8e5eb8af7297dd04e2"
+    },
+    {
+      "path": "app/src/main/res/values/themes.xml",
+      "bytes": 4389,
+      "sha256": "b467b6ad47ff68f83bb9ec20b9eb0ea2b41f397d84e83febda2c0d82f33e4b90"
+    },
+    {
+      "path": "app/src/main/res/xml/network_security_config.xml",
+      "bytes": 352,
+      "sha256": "0bdedb01dc684b6678829cc62c49e1e96a77d1fee51d3d40d20ba2cba4d56bad"
+    },
+    {
+      "path": "app/src/test/java/com/bjunicom/iptv/M3uParserTest.java",
+      "bytes": 2404,
+      "sha256": "b5111b52e555f63e956f2d6e35c1e5b2d2d60f4839a9ba2b423d8b6828dac96a"
+    },
+    {
+      "path": "app/src/test/java/com/bjunicom/iptv/StartupSmokeTest.java",
+      "bytes": 19903,
+      "sha256": "cfe7cbd64e40d9000a565fe7361afed10b6cd52445f3125fcdf37d4b382009e3"
+    },
+    {
+      "path": "app/src/test/java/com/bjunicom/iptv/player/StreamRecoveryTest.java",
+      "bytes": 9020,
+      "sha256": "7d97c25aad00e7e5ee8d99f8d0aa67a8d498cc0088e13fe3482baa21eff2f6eb"
+    },
+    {
+      "path": "build.gradle",
+      "bytes": 243,
+      "sha256": "8469e11f7358c6e566683f289e65d0dece1972b1601a42163439998a854404e6"
+    },
+    {
+      "path": "gradle.properties",
+      "bytes": 142,
+      "sha256": "e94681b0342451c021ad758edc8a6572bc632038def11a21b1a4a52876af7b90"
+    },
+    {
+      "path": "gradle/wrapper/gradle-wrapper.properties",
+      "bytes": 204,
+      "sha256": "cc03a16f7236240ddf9090f98f0d584d67e56d1a5b856e7ad709afce76f1e95e"
+    },
+    {
+      "path": "settings.gradle",
+      "bytes": 604,
+      "sha256": "70a04a8438ddcf3e07f3aea418ca1d29c0a966d33e7e24ad659e56aecbccbbcc"
+    }
+  ],
+  "existingApks": [
+    {
+      "path": "app/build/outputs/apk/debug/app-debug.apk",
+      "bytes": 15917255,
+      "sha256": "e0910fb014ff480c3b239a44598a52a0f607b98a1637c20444e2a5512e86251a",
+      "mtimeUtc": "2026-10-26T13:58:07.385Z",
+      "status": "existing artifact; not rebuilt or verified against current source for this documentation task"
+    },
+    {
+      "path": "../看看电视-ui-preview.apk",
+      "bytes": 15914129,
+      "sha256": "c25a61c954c016264b4cf4a240820ab6f1bfe61c99eeeb205f9f44ca56888cc4",
+      "mtimeUtc": "2026-10-26T13:22:07.839Z",
+      "status": "existing artifact; not rebuilt or verified against current source for this documentation task"
+    }
+  ]
+}

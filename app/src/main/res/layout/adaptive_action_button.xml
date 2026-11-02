@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Only geometry belongs here. Appearance comes from the shared, evolving theme. -->
+<androidx.appcompat.widget.AppCompatButton xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.BjUnicomIptv.HudButton"
+    android:layout_width="wrap_content" android:layout_height="48dp"
+    android:minWidth="48dp" android:minHeight="48dp"
+    android:paddingHorizontal="12dp" android:singleLine="true" android:textSize="14sp" />

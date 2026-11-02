@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/root_container" android:layout_width="match_parent" android:layout_height="match_parent" android:background="#000000" android:keepScreenOn="true">
+<com.bjunicom.iptv.player.IjkVideoView android:id="@+id/ijk_video_view" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_gravity="center" android:focusable="false"/>
+<ImageView android:id="@+id/preview_backdrop" android:layout_width="match_parent" android:layout_height="match_parent" android:src="@drawable/preview_landscape" android:scaleType="centerCrop" android:importantForAccessibility="no"/>
+<TextView android:id="@+id/preview_label" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="top|end" android:layout_marginTop="80dp" android:layout_marginEnd="28dp" android:paddingHorizontal="14dp" android:paddingVertical="8dp" android:background="@drawable/bg_md3_hud_surface" android:text="画面预览 · 非直播" android:textColor="@color/text_primary" android:textSize="13sp"/>
+<LinearLayout android:id="@+id/loading_overlay" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:background="@drawable/bg_md3_hud_surface" android:orientation="vertical" android:gravity="center" android:padding="16dp" android:visibility="gone">
+<ProgressBar android:layout_width="32dp" android:layout_height="32dp" android:indeterminateTint="@color/text_primary"/>
+<TextView android:id="@+id/tv_loading_hint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="正在连接频道" android:textSize="16sp" android:textColor="@color/text_primary" android:layout_marginTop="16dp"/>
+</LinearLayout>
+<TextView android:id="@+id/tv_number_input_osd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" android:textSize="28sp" android:textColor="@color/text_primary" android:layout_gravity="top|end" android:layout_margin="28dp" android:padding="20dp" android:background="@drawable/bg_md3_hud_surface" android:visibility="gone"/>
+
+<RelativeLayout android:id="@+id/player_hud_overlay" android:layout_width="match_parent" android:layout_height="match_parent">
+ <LinearLayout android:id="@+id/glass_top_bar" android:layout_width="wrap_content" android:layout_height="56dp" android:layout_marginStart="28dp" android:layout_marginTop="14dp" android:gravity="center" android:padding="8dp" android:background="@drawable/bg_md3_hud_surface">
+ <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_toggle_drawer" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="wrap_content" android:layout_height="40dp" android:minHeight="40dp" android:text="频道" android:textSize="14sp" android:paddingHorizontal="16dp" android:singleLine="true" android:includeFontPadding="false" android:background="@drawable/bg_md3_primary_button" android:drawableStart="@drawable/ic_flat_menu" android:drawablePadding="8dp" />
+ </LinearLayout>
+ <LinearLayout android:id="@+id/phone_more_surface" android:layout_width="44dp" android:layout_height="44dp" android:layout_alignParentEnd="true" android:layout_marginEnd="28dp" android:layout_marginTop="14dp" android:background="@drawable/bg_md3_hud_surface">
+ <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_phone_more" style="@style/Widget.BjUnicomIptv.PhoneIconButton" android:layout_width="44dp" android:layout_height="44dp" android:drawableStart="@drawable/ic_flat_more_horizontal" android:contentDescription="更多操作" />
+ </LinearLayout>
+ <LinearLayout android:id="@+id/phone_favorite_surface" android:layout_width="44dp" android:layout_height="44dp" android:layout_toStartOf="@id/phone_more_surface" android:layout_marginEnd="8dp" android:layout_marginTop="14dp" android:background="@drawable/bg_md3_hud_surface">
+ <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_favorite_channel" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text="☆" android:textSize="24sp" android:contentDescription="收藏当前频道" />
+ </LinearLayout>
+ <LinearLayout android:id="@+id/glass_player_bar" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_alignParentBottom="true" android:layout_marginStart="28dp" android:layout_marginEnd="28dp" android:layout_marginBottom="20dp" android:paddingStart="16dp" android:paddingEnd="10dp" android:paddingVertical="8dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="@drawable/bg_md3_hud_surface">
+  <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:orientation="vertical" android:layout_marginEnd="10dp">
+   <TextView android:id="@+id/tv_osd_channel_name" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary" android:textSize="16sp" android:fontFamily="sans-serif-medium" android:singleLine="true" android:ellipsize="end" />
+   <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="3dp">
+    <TextView android:id="@+id/tv_osd_resolution_badge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary" android:paddingHorizontal="4dp" android:textSize="10sp" android:background="@drawable/bg_badge" />
+    <TextView android:id="@+id/tv_osd_group_name" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:layout_marginStart="8dp" android:textSize="11sp" android:textColor="@color/text_secondary" android:singleLine="true" android:ellipsize="end" />
+   </LinearLayout>
+  </LinearLayout>
+  <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_prev_channel" style="@style/Widget.BjUnicomIptv.PhoneIconButton" android:layout_width="44dp" android:layout_height="44dp" android:drawableStart="@drawable/ic_flat_chevron_left" android:contentDescription="上一台" />
+  <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_numpad_dialog" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="wrap_content" android:layout_height="44dp" android:text="001" android:textSize="18sp" android:textStyle="bold" android:includeFontPadding="false" android:singleLine="true" android:gravity="center" android:fontFamily="monospace" android:contentDescription="数字选台" />
+  <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_next_channel" style="@style/Widget.BjUnicomIptv.PhoneIconButton" android:layout_width="44dp" android:layout_height="44dp" android:drawableStart="@drawable/ic_flat_chevron_right" android:contentDescription="下一台" />
+ </LinearLayout>
+ <TextView android:id="@+id/tv_playback_status" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_above="@id/glass_player_bar" android:layout_centerHorizontal="true" android:layout_marginBottom="5dp" android:textSize="11sp" android:singleLine="true" android:ellipsize="end" android:textColor="@color/text_primary" />
+ <ScrollView android:id="@+id/phone_more_menu" android:layout_width="230dp" android:layout_height="wrap_content" android:layout_alignParentEnd="true" android:layout_marginEnd="28dp" android:layout_marginTop="66dp" android:background="@drawable/bg_md3_hud_surface" android:padding="6dp" android:elevation="12dp" android:visibility="gone">
+  <LinearLayout android:id="@+id/phone_more_items" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" />
+ </ScrollView>
+</RelativeLayout>
+<LinearLayout android:id="@+id/channel_drawer_panel" android:layout_width="292dp" android:layout_height="match_parent" android:layout_marginStart="23dp" android:layout_marginVertical="10dp" android:background="@drawable/bg_md3_hud_surface" android:orientation="vertical" android:paddingHorizontal="10dp" android:paddingBottom="7dp" android:visibility="gone" android:elevation="10dp">
+ <LinearLayout android:layout_width="match_parent" android:layout_height="44dp" android:orientation="horizontal" android:gravity="center_vertical">
+  <TextView android:id="@+id/tv_drawer_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary" android:layout_marginStart="7dp" android:text="频道" android:textSize="16sp" />
+  <TextView android:id="@+id/phone_channel_count" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:layout_marginStart="10dp" android:textSize="11sp" android:textColor="@color/text_secondary" />
+  <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_close_drawer" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text="×" android:textSize="22sp" android:contentDescription="收起频道列表" />
+ </LinearLayout>
+ <LinearLayout android:layout_width="match_parent" android:layout_height="40dp" android:orientation="horizontal" android:gravity="center_vertical" android:background="@drawable/bg_settings_input">
+  <EditText android:id="@+id/et_search_channel" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="@android:color/transparent" android:paddingHorizontal="10dp" android:hint="搜索频道、台号或地址" android:singleLine="true" android:imeOptions="actionSearch" android:inputType="text" android:textSize="12sp" android:textColor="@color/text_primary" android:textColorHint="@color/text_muted" android:focusableInTouchMode="false" />
+  <androidx.appcompat.widget.AppCompatCheckBox android:id="@+id/cb_only_available" android:layout_width="wrap_content" android:layout_height="40dp" android:minWidth="0dp" android:minHeight="0dp" android:paddingEnd="6dp" android:text="可用" android:textSize="11sp" android:textColor="@color/text_primary" />
+ </LinearLayout>
+ <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_categories" android:layout_width="match_parent" android:layout_height="46dp" android:paddingVertical="5dp" android:clipToPadding="false" />
+ <TextView android:id="@+id/tv_channel_empty" android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingVertical="16dp" android:text="没有匹配的频道" android:textSize="13sp" android:gravity="center" android:textColor="@color/text_secondary" android:visibility="gone" />
+ <androidx.recyclerview.widget.RecyclerView android:id="@+id/rv_channels" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:clipToPadding="false" android:scrollbars="vertical" />
+</LinearLayout>
+<!-- Shared business bindings and remote shortcuts, without consuming phone space. -->
+<LinearLayout android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone">
+<TextView android:id="@+id/tv_top_channel_title" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary"  />
+<TextView android:id="@+id/tv_top_stream_speed" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary"  />
+<TextView android:id="@+id/tv_osd_channel_num" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary"  />
+<TextView android:id="@+id/tv_osd_stream_url" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary"  />
+<TextView android:id="@+id/tv_osd_track_info" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary"  />
+<TextView android:id="@+id/tv_remote_help_hint" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary"  />
+<TextView android:id="@+id/tv_drawer_help" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textColor="@color/text_primary"  />
+<androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_open_settings" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text=""  />
+<androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_open_scanner" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text=""  />
+<androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_diagnostics" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text=""  />
+<androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_aspect_ratio" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text=""  />
+<androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_reload_stream" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text=""  />
+<androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_drawer_numpad" style="@style/Widget.BjUnicomIptv.PhoneButton" android:layout_width="44dp" android:layout_height="44dp" android:text=""  />
+</LinearLayout>
+</FrameLayout>
