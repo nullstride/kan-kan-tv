@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="welcome_choice_surface">#2A2B2E</color>
+    <color name="welcome_choice_border">#626468</color>
+    <color name="welcome_check_surface">#303134</color>
+    <color name="welcome_later_surface">#292A2D</color>
+    <color name="welcome_later_label">#D4D4D7</color>
+</resources>

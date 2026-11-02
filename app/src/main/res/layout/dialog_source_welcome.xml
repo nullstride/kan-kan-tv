@@ -56,13 +56,14 @@
         android:layout_marginTop="8dp" android:gravity="center_vertical" android:orientation="horizontal">
         <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_welcome_check"
             style="@style/Widget.BjUnicomIptv.WelcomeAction"
-            android:background="@drawable/bg_settings_secondary_button"
+            android:background="@drawable/bg_welcome_check"
             android:text="先检测可用源" android:textColor="@color/settings_control_text" />
         <Space android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
         <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_welcome_later"
             style="@style/Widget.BjUnicomIptv.WelcomeAction"
-            android:layout_marginStart="8dp" android:background="@drawable/bg_settings_secondary_button"
-            android:text="稍后设置" android:textColor="@color/settings_control_text" />
+            android:layout_width="124dp" android:layout_marginStart="8dp"
+            android:background="@drawable/bg_welcome_later"
+            android:text="稍后设置" android:textColor="@color/welcome_later_text" />
         <androidx.appcompat.widget.AppCompatButton android:id="@+id/btn_welcome_confirm"
             style="@style/Widget.BjUnicomIptv.WelcomeAction"
             android:layout_width="124dp" android:layout_marginStart="8dp"

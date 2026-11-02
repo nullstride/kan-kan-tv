@@ -17,12 +17,19 @@ final class GlassMotion {
     }
 
     static void install(View view, boolean expandOnFocus) {
-        protectLabel(view, view.isFocused() || view.isSelected());
+        install(view, expandOnFocus, true);
+    }
+
+    static void install(View view, boolean expandOnFocus, boolean textShadow) {
+        protectLabel(view, !textShadow || view.isFocused() || view.isSelected());
         view.setOnTouchListener((v, event) -> {
             if (event.getActionMasked() == MotionEvent.ACTION_DOWN) animate(v, .97f);
             else if (event.getActionMasked() == MotionEvent.ACTION_UP
-                    || event.getActionMasked() == MotionEvent.ACTION_CANCEL)
-                focus(v, v.isFocused() || v.isSelected(), expandOnFocus);
+                    || event.getActionMasked() == MotionEvent.ACTION_CANCEL) {
+                boolean focused = v.isFocused() || v.isSelected();
+                protectLabel(v, !textShadow || focused);
+                animate(v, focused && expandOnFocus ? 1.04f : 1f);
+            }
             return false;
         });
     }

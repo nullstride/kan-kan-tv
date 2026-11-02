@@ -12,7 +12,7 @@ import androidx.appcompat.app.AlertDialog;
 import com.kankan.iptv.R;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-/** A centered source picker; all four choices share the player's regular glass material. */
+/** A centered glass source picker with solid, shadow-free controls. */
 final class WelcomeDialogUi {
     interface Actions {
         void useSource(int choice);
@@ -39,14 +39,11 @@ final class WelcomeDialogUi {
                 choice.setTextSize(20);
                 choice.setMinHeight(AdaptiveViews.dp(activity, 60));
             }
-            GlassMotion.install(choice, false);
-            choice.setOnFocusChangeListener((v, focused) ->
-                    GlassForeground.protect(choice, choice.isChecked()));
+            GlassMotion.install(choice, false, false);
             choice.setOnClickListener(v -> {
                 selected[0] = index;
                 for (RadioButton item : choices) {
                     item.setChecked(item == choice);
-                    GlassForeground.protect(item, item.isChecked());
                 }
                 confirm.setEnabled(true);
                 confirm.setText(index == 3 ? "导入频道列表" : "使用并播放");
@@ -60,7 +57,7 @@ final class WelcomeDialogUi {
         });
         later.setOnClickListener(v -> dialog.dismiss());
         check.setOnClickListener(v -> { dialog.dismiss(); actions.checkSources(); });
-        for (Button button : new Button[]{confirm, later, check}) GlassMotion.install(button, false);
+        for (Button button : new Button[]{confirm, later, check}) GlassMotion.install(button, false, false);
         if (television) {
             ((TextView) content.findViewById(R.id.welcome_title)).setTextSize(26);
             ((TextView) content.findViewById(R.id.welcome_hint)).setTextSize(18);
