@@ -72,7 +72,7 @@ final class VideoGlass {
         worker = new Handler(workerThread.getLooper());
         for (View panel : panels) addPanel(panel, false);
         if (debug) Log.i("VideoGlass", "backend=" + (advanced ? "AGSL" : "fallback")
-                + " optics=" + (reference ? "upstream" : "20261027"));
+                + " optics=" + (reference ? "upstream" : "linguang-6dp"));
     }
 
     void addPanel(View panel, boolean regular) {

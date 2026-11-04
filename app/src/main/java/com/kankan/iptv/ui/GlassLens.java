@@ -17,6 +17,11 @@ import java.io.InputStream;
 /** API 33 boundary. Only the backdrop is shaded; Android draws children normally afterwards. */
 @TargetApi(33)
 final class GlassLens {
+    private static final float LINGUANG_RADIUS_DP = 6f;
+    private static final float LINGUANG_SAMPLE_LIMIT_DP = 20f;
+    private static final float LINGUANG_STRENGTH = .70f;
+    // Independent of scattering; the approved preview leaves highlight compression off.
+    private static final float REGULAR_STRENGTH = 0f;
     private final RuntimeShader lens;
     private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Matrix mapping = new Matrix();
@@ -74,8 +79,10 @@ final class GlassLens {
             // A filled action needs an evenly lit frame so equal insets also read as equal.
             lens.setFloatUniform("lightPosition", lightX,
                     bounds.height() * (balancedFrame ? .5f : -.7f));
-            lens.setFloatUniform("interiorBlurRadius", (drawer ? 5f : .75f) * density);
-            lens.setFloatUniform("regularStrength", drawer ? 1f : 0f);
+            lens.setFloatUniform("interiorBlurRadius", (drawer ? LINGUANG_RADIUS_DP : .75f) * density);
+            lens.setFloatUniform("linguangSampleLimit", LINGUANG_SAMPLE_LIMIT_DP * density);
+            lens.setFloatUniform("linguangStrength", drawer ? LINGUANG_STRENGTH : 0f);
+            lens.setFloatUniform("regularStrength", drawer ? REGULAR_STRENGTH : 0f);
         }
         lens.setFloatUniform("size", bounds.width(), bounds.height());
         lens.setFloatUniform("cornerRadii", radius, radius, radius, radius);

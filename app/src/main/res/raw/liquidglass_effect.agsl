@@ -42,6 +42,8 @@ uniform float blurRadius;
 uniform float pixelDensity;
 uniform float2 lightPosition;
 uniform float interiorBlurRadius;
+uniform float linguangSampleLimit;
+uniform float linguangStrength;
 uniform float regularStrength;
 
 half4 boundedSample(float2 p) {
@@ -58,6 +60,64 @@ half4 sampleBackdrop(float2 p, float radius) {
         + boundedSample(p + dy) + boundedSample(p - dy)) * 0.125
         + (boundedSample(p + dx + dy) + boundedSample(p + dx - dy)
         + boundedSample(p - dx + dy) + boundedSample(p - dx - dy)) * 0.0625;
+}
+
+// Luminance statistics use float precision so small detail is not lost to half rounding.
+struct BackdropKernel {
+    half4 color;
+    float spread;
+};
+
+BackdropKernel backdropKernel(float2 p, float radius) {
+    float2 dx = float2(radius, 0.0);
+    float2 dy = float2(0.0, radius);
+    float4 a = float4(boundedSample(p));
+    float4 b = float4(boundedSample(p + dx));
+    float4 c = float4(boundedSample(p - dx));
+    float4 d = float4(boundedSample(p + dy));
+    float4 e = float4(boundedSample(p - dy));
+    float4 f = float4(boundedSample(p + dx + dy));
+    float4 g = float4(boundedSample(p + dx - dy));
+    float4 h = float4(boundedSample(p - dx + dy));
+    float4 i = float4(boundedSample(p - dx - dy));
+    float4 mean = a * 0.25 + (b + c + d + e) * 0.125 + (f + g + h + i) * 0.0625;
+    float3 weights = float3(0.2126, 0.7152, 0.0722);
+    float ya = dot(a.rgb, weights), yb = dot(b.rgb, weights), yc = dot(c.rgb, weights);
+    float yd = dot(d.rgb, weights), ye = dot(e.rgb, weights), yf = dot(f.rgb, weights);
+    float yg = dot(g.rgb, weights), yh = dot(h.rgb, weights), yi = dot(i.rgb, weights);
+    float ym = dot(mean.rgb, weights);
+    float moment = ya * ya * 0.25 + (yb * yb + yc * yc + yd * yd + ye * ye) * 0.125
+        + (yf * yf + yg * yg + yh * yh + yi * yi) * 0.0625;
+    BackdropKernel result;
+    result.color = half4(mean);
+    result.spread = sqrt(max(moment - ym * ym, 0.0));
+    return result;
+}
+
+// 鳞光玻璃: expand the same nine-tap kernel only where local detail is weak.
+half4 sampleLinguang(float2 p, float radius, float interior) {
+    if (linguangStrength < 0.001) return sampleBackdrop(p, radius);
+    BackdropKernel base = backdropKernel(p, radius);
+    float weak = (1.0 - smoothstep(0.014, 0.045, base.spread)) * interior;
+    if (weak < 0.001) return base.color;
+
+    float sourceRoom = min(min(p.x - sourceBounds.x, p.y - sourceBounds.y),
+        min(sourceBounds.z - p.x, sourceBounds.w - p.y)) - pixelDensity;
+    float maximumRadius = max(radius, min(linguangSampleLimit, max(sourceRoom, radius)));
+    float4 candidate = float4(0.0);
+    float remaining = 1.0;
+    for (int step = 1; step <= 4; step++) {
+        float widerRadius = max(radius, min(5.0 * pixelDensity * exp2(float(step)), maximumRadius));
+        BackdropKernel wider = backdropKernel(p, widerRadius);
+        float found = smoothstep(0.025, 0.065, wider.spread);
+        // All subsequent scales would be identical at the limit; merge their weights.
+        bool lastScale = step == 4 || widerRadius >= maximumRadius;
+        float weight = remaining * (lastScale ? 1.0 : found);
+        candidate += float4(wider.color) * weight;
+        remaining -= weight;
+        if (lastScale) break;
+    }
+    return half4(mix(float4(base.color), candidate, weak * linguangStrength));
 }
 
 // Compress only bright regions of the reading material, preserving hue and dark detail.
@@ -169,7 +229,7 @@ half4 main(float2 coord) {
     float interior = smoothstep(2.0 * pixelDensity, 16.0 * pixelDensity, max(-sd, 0.0));
     float sampleRadius = mix(blurRadius, interiorBlurRadius, interior);
     if (-sd >= refractionHeight) {
-        half4 baseColor = sampleBackdrop(coord, sampleRadius);
+        half4 baseColor = sampleLinguang(coord, sampleRadius, interior);
 
         baseColor = saturateColor(baseColor, chromaMultiplier);
         float3 target = (whitePoint > 0.0) ? float3(1.0) : float3(0.0);

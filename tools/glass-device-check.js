@@ -3,8 +3,10 @@ const cp = require('node:child_process');
 const fs = require('node:fs');
 const path = require('node:path');
 const adb = path.join(process.env.LOCALAPPDATA, 'Android', 'Sdk', 'platform-tools', 'adb.exe');
-const [serial, output] = process.argv.slice(2);
-if (!serial || !output) throw Error('Usage: node tools/glass-device-check.js <serial> <output-directory>');
+const [serial, output, ...options] = process.argv.slice(2);
+if (!serial || !output || options.some(option => option !== '--regular'))
+  throw Error('Usage: node tools/glass-device-check.js <serial> <output-directory> [--regular]');
+const materialArgs = options.includes('--regular') ? ['--ez', 'regular_glass', 'true'] : [];
 fs.mkdirSync(output, {recursive: true});
 function run(args, binary = false) {
   const result = cp.spawnSync(adb, ['-s', serial, ...args], {
@@ -17,7 +19,7 @@ function run(args, binary = false) {
 const pause = ms => new Promise(resolve => setTimeout(resolve, ms));
 async function scene(name, mode, extras = [], video = false) {
   run(['shell', 'am', 'start', '-S', '-n', 'com.kankan.iptv/.ui.GlassLabActivity',
-    '--es', 'mode', mode, ...extras]);
+    '--es', 'mode', mode, ...materialArgs, ...extras]);
   await pause(1500);
   const pid = run(['shell', 'pidof', 'com.kankan.iptv']).trim();
   if (!pid) throw Error('App did not start: ' + name);

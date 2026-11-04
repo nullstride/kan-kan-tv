@@ -104,7 +104,8 @@ public final class GlassLabActivity extends Activity {
             button.setOnFocusChangeListener((v, focused) -> { GlassMotion.focus(v, focused); if (focused) glass.focus(v); });
         }
         setContentView(root);
-        glass = new VideoGlass(video, preview, panel);
+        glass = new VideoGlass(video, preview);
+        glass.addPanel(panel, getIntent().getBooleanExtra("regular_glass", false));
         if (getIntent().getBooleanExtra("hide_panels", false)) handler.postDelayed(() -> {
             panel.setVisibility(View.GONE);
             android.util.Log.i("GlassLab", "panels-hidden");
